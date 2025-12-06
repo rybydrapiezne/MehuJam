@@ -19,7 +19,7 @@ public class ObstacleMover : MonoBehaviour
         Debug.Log("trigger enter");
         if(collision != null)
         {
-           CharacterController controller = collision.GetComponent<CharacterController>();
+           PlayerController controller = collision.GetComponent<PlayerController>();
            controller.ApplyPhysicalForce(0.2f);
         }
     }

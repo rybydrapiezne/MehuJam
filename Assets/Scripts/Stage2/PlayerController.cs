@@ -3,7 +3,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class CharacterController : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     [Header("Character tilt")]
     [SerializeField]
@@ -28,20 +28,14 @@ public class CharacterController : MonoBehaviour
     private bool isGrounded = true;
 
     private Rigidbody2D rb;
-    public CharacterAnimator characterAnimator;
+    public PlayerAnimator characterAnimator;
 
-    [SerializeField] private InputActionReference tiltAction;
-    [SerializeField] private InputActionReference jumpAction;
+    public float tiltInput = 0f;
 
     private IEnumerator tiltingCoroutine;
 
     [HideInInspector]
     public Stage2Manager manager;
-
-    private void Awake()
-    {
-        jumpAction.action.performed += Jump;
-    }
 
     private void Start()
     {
@@ -56,7 +50,7 @@ public class CharacterController : MonoBehaviour
 
     private void GameLoop(float deltaTime)
     {
-        playerInputTiltStrength = Mathf.Lerp(playerInputTiltStrength, -tiltAction.action.ReadValue<float>(), deltaTime * 4f);
+        playerInputTiltStrength = Mathf.Lerp(playerInputTiltStrength, -tiltInput, deltaTime * 4f);
         physicsTiltStrength = Mathf.Lerp(physicsTiltStrength, tilt, deltaTime * 4f);
 
         randomnessTiltStrength = Mathf.Lerp(randomnessTiltStrength, 0, deltaTime / 4f);
@@ -78,16 +72,17 @@ public class CharacterController : MonoBehaviour
         playerInputTiltStrength = 0f;
         randomnessTiltStrength = 0f;
         physicsTiltStrength = 0f;
+
+        manager.jumpAction.action.performed += Jump;
+
         if (tiltingCoroutine != null) StopCoroutine(tiltingCoroutine);
         tiltingCoroutine = ApplyRandomTilt();
         StartCoroutine(tiltingCoroutine);
-
-        enabled = true;
     }
 
     public void ApplyPhysicalForce(float force)
     {
-        if (enabled)
+        if (manager.isPlaying)
         {
             physicsTiltStrength += force;
         }
@@ -95,7 +90,7 @@ public class CharacterController : MonoBehaviour
 
     private void Jump(InputAction.CallbackContext context)
     {
-        if (isGrounded)
+        if (isGrounded && manager.isPlaying)
         {
             if (Mathf.Abs(tilt) < 0.3f)
             {

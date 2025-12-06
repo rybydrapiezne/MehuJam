@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using static UnityEngine.GraphicsBuffer;
 
@@ -12,7 +13,7 @@ public class Stage2Manager : MonoBehaviour
 
     public bool isPlaying = false;
 
-    public CharacterController characterController;
+    public PlayerController characterController;
 
     public Slider progressBar;
 
@@ -30,16 +31,20 @@ public class Stage2Manager : MonoBehaviour
     public Vector2 SPAWNCOOLDOWN = new Vector2(3f, 10f);
     private float spawnCooldown = 0f;
 
-    private void Awake()
+    [SerializeField] private InputActionReference tiltAction;
+    public InputActionReference jumpAction;
+
+    private void Start()
     {
         characterController.manager = this;
         targetStartPos = target.transform.position;
         targetEndPos = new Vector3(characterController.gameObject.transform.position.x + 2, targetStartPos.y, targetStartPos.z);
-    }
 
-    private void Start()
-    {
-        Run();
+        target.transform.position = targetStartPos;
+        characterController.Init();
+        levelTime = LEVELTIME;
+
+        isPlaying = true;
     }
 
     private void Update()
@@ -48,6 +53,9 @@ public class Stage2Manager : MonoBehaviour
 
         if (isPlaying)
         {
+            // Player input
+            characterController.tiltInput = tiltAction.action.ReadValue<float>();
+
             // Obstacle spawning
             spawnCooldown -= Time.deltaTime;
             if (spawnCooldown <= 0f)
@@ -74,15 +82,6 @@ public class Stage2Manager : MonoBehaviour
             End();
             GameManager.Instance.NextStage();
         }
-    }
-
-    public void Run()
-    {
-        target.transform.position = targetStartPos;
-        characterController.Init();
-        levelTime = LEVELTIME;
-
-        isPlaying = true;
     }
 
     public void End()

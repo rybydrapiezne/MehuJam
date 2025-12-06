@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
         {
             stage1.gameObject.SetActive(false);
             stage2.gameObject.SetActive(true);
-            stage2.Run();
+            //stage2.Run();
         }
         else if (currentStage == 3)
         {
