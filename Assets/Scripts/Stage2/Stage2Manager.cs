@@ -36,6 +36,12 @@ public class Stage2Manager : MonoBehaviour
 
     private void Start()
     {
+        if(tiltAction == null || jumpAction == null)
+        {
+            tiltAction = GameManager.Instance.tiltAction;
+            jumpAction = GameManager.Instance.jumpAction;
+        }
+
         characterController.manager = this;
         targetStartPos = target.transform.position;
         targetEndPos = new Vector3(characterController.gameObject.transform.position.x + 2, targetStartPos.y, targetStartPos.z);

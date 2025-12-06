@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,6 +12,16 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    [Header("Stage 2")]
+    public InputActionReference tiltAction;
+    public InputActionReference jumpAction;
+
+    [Header("Stage 3")]
+    public InputActionReference attackAction;
+    public InputActionReference retractAction;
+    public InputActionReference interactAction;
+
+    [Header("General")]
     public GameObject stage1Prefab;
     public GameObject stage2Prefab;
     public GameObject stage3Prefab;
