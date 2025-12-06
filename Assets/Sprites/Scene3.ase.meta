@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c3adfd503781f974a863f8fd73aa11a9
+guid: 5d9024201553a8d41b8d5cdb25096ec4
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -102,7 +102,7 @@ ScriptedImporter:
     generateIndividualEvents: 1
     generateSpriteAtlas: 1
   importFileNodeState: 1
-  platformSettingsDirtyTick: 639006384277408471
+  platformSettingsDirtyTick: 639006384277428482
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -127,9 +127,9 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: Scene1
+  - name: Frame_0
     originalName: 
-    pivot: {x: 1.362069, y: -0.17142858}
+    pivot: {x: 0.23076925, y: -4.139535}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -137,9 +137,9 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 58
-      height: 105
-    spriteID: 206b8bc2019a8204eb380888935dc0a0
+      width: 104
+      height: 43
+    spriteID: 78a718a749caaf840b63d0b0b16ff086
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -153,25 +153,25 @@ ScriptedImporter:
   asepriteLayers:
   - layerIndex: 0
     uuid:
-      value0: 4121939699
+      value0: 872556727
       value1: 0
       value2: 0
       value3: 0
     guid: 0
-    name: Scene1
+    name: Character2
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: Scene1
+    - name: Scene3
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
-        x: 49
-        y: 18
-        width: 58
-        height: 105
-      spriteId: 206b8bc2019a8204eb380888935dc0a0
+        x: 104
+        y: 178
+        width: 104
+        height: 43
+      spriteId: 78a718a749caaf840b63d0b0b16ff086
     linkedCells: []
     tileCells: []
     tileSetIndex: 0
@@ -229,5 +229,5 @@ ScriptedImporter:
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 256, y: 144}
-  previousTextureSize: {x: 128, y: 128}
+  canvasSize: {x: 256, y: 256}
+  previousTextureSize: {x: 128, y: 64}
