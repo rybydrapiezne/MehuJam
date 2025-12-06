@@ -5,8 +5,6 @@ using TMPro;
 public class FountainUIController : MonoBehaviour
 {
     [SerializeField] private Slider valueSlider;
-    //[SerializeField] private Button plusButton;
-    //[SerializeField] private Button minusButton;
     [SerializeField] private Button exitButton;
     [SerializeField] private Button throwCoins;
     [SerializeField] private TMP_Text valueText;
@@ -27,13 +25,13 @@ public class FountainUIController : MonoBehaviour
 
     private void Awake()
     {
+        HidePanel();
+
         valueSlider.minValue = minValue;
         valueSlider.maxValue = maxValue;
         valueSlider.wholeNumbers = true;
         valueSlider.value = Mathf.Clamp(startValue, minValue, maxValue);
 
-        //plusButton.onClick.AddListener(OnPlusPressed);
-        //minusButton.onClick.AddListener(OnMinusPressed);
         exitButton.onClick.AddListener(OnExitPressed);
         valueSlider.onValueChanged.AddListener(OnSliderChanged);
         throwCoins.onClick.AddListener(OnThrowCoinsPressed);
@@ -54,35 +52,35 @@ public class FountainUIController : MonoBehaviour
 
     private void OnDestroy()
     {
-        //plusButton.onClick.RemoveListener(OnPlusPressed);
-        //minusButton.onClick.RemoveListener(OnMinusPressed);
         exitButton.onClick.RemoveListener(OnExitPressed);
         valueSlider.onValueChanged.RemoveListener(OnSliderChanged);
         throwCoins.onClick.RemoveListener(OnThrowCoinsPressed);
 
     }
-
-    //private void OnPlusPressed()
-    //{
-    //    int newVal = Mathf.Clamp((int)valueSlider.value + 1, minValue, maxValue);
-    //    if (newVal != (int)valueSlider.value)
-    //    {
-    //        valueSlider.value = newVal;
-    //    }
-    //}
-
-    //private void OnMinusPressed()
-    //{
-    //    int newVal = Mathf.Clamp((int)valueSlider.value - 1, minValue, maxValue);
-    //    if (newVal != (int)valueSlider.value)
-    //    {
-    //        valueSlider.value = newVal;
-    //    }
-    //}
+    public void ShowPanel()
+    {
+        CanvasGroup cg = GetComponent<CanvasGroup>();
+        if (cg != null)
+        {
+            cg.alpha = 1f;
+            cg.interactable = true;
+            cg.blocksRaycasts = true;
+        }
+    }
 
     private void OnExitPressed()
     {
-        gameObject.SetActive(false);
+        HidePanel();
+    }
+    public void HidePanel()
+    {
+        CanvasGroup canvGroup = GetComponent<CanvasGroup>();
+        if (canvGroup != null)
+        {
+            canvGroup.alpha = 0f;
+            canvGroup.interactable = false;
+            canvGroup.blocksRaycasts = false;
+        }
     }
 
     private void OnSliderChanged(float value)

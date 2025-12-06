@@ -3,85 +3,93 @@ using UnityEngine;
 
 public class PlaceCharactersRandom : MonoBehaviour
 {
-    public Collider2D[] characters;
-    public Sprite[] availableSprites;
-    public float minX, maxX, minY, maxY;
+    public GameObject[] characterPrefabs;
+
+    public int charactersToPlace = 3;
+
+    public Transform parentContainer;
+
+    public float minX = -5f, maxX = 5f, minY = -3f, maxY = 3f;
     public float minDistance = 1f;
 
-    private void Start()
+    void Start()
     {
-        AssignRandomSprites();
-        PositionCharacters();
-    }
-    private void AssignRandomSprites()
-    {
-        List<Sprite> spritesPool = new List<Sprite>(availableSprites);
-        ShuffleList(spritesPool);
-
-        for (int i = 0; i < characters.Length; i++)
+        if (characterPrefabs == null || characterPrefabs.Length == 0)
         {
-            SpriteRenderer sr = characters[i].GetComponent<SpriteRenderer>();
-            if (sr != null)
+            Debug.LogError("Brak prefabów postaci w inspectorze!");
+            return;
+        }
+
+        if (charactersToPlace <= 0) charactersToPlace = 1;
+        charactersToPlace = Mathf.Min(charactersToPlace, characterPrefabs.Length);
+
+        List<int> indices = GetUniqueRandomIndices(characterPrefabs.Length, charactersToPlace);
+        Vector2[] positions = GeneratePositions(charactersToPlace);
+
+        for (int i = 0; i < charactersToPlace; i++)
+        {
+            GameObject prefab = characterPrefabs[indices[i]];
+            Vector2 pos = positions[i];
+
+            GameObject instance = Instantiate(prefab, pos, Quaternion.identity, parentContainer);
+            instance.transform.rotation = Quaternion.identity;
+            Vector3 s = instance.transform.localScale;
+            instance.transform.localScale = new Vector3(Mathf.Abs(s.x), Mathf.Abs(s.y), Mathf.Abs(s.z));
+
+            CursorHandler cursorHandler = instance.GetComponent<CursorHandler>();
+            if (cursorHandler != null)
             {
-                sr.sprite = spritesPool[i];
-            }
-            
-            Transform outlineChild = characters[i].transform.Find("Outline");
-            if (outlineChild != null)
-            {
-                SpriteRenderer outlineSR = outlineChild.GetComponent<SpriteRenderer>();
-                if (outlineSR != null)
-                {
-                    outlineSR.sprite = spritesPool[i];
-                }
+                cursorHandler.fountainUI = FindAnyObjectByType<FountainUIController>()?.gameObject;
+                cursorHandler.stage1Controller = FindAnyObjectByType<Stage1Controller>();
             }
         }
     }
-    private void ShuffleList<T>(List<T> list)
+
+    private List<int> GetUniqueRandomIndices(int poolSize, int take)
     {
-        for (int i = list.Count - 1; i > 0; i--)
+        List<int> list = new List<int>(poolSize);
+        for (int i = 0; i < poolSize; i++) { list.Add(i); }
+
+        for (int i = 0; i < take; i++)
         {
-            int j = Random.Range(0, i + 1);
-            T temp = list[i];
+            int j = Random.Range(i, poolSize);
+            int tmp = list[i];
             list[i] = list[j];
-            list[j] = temp;
+            list[j] = tmp;
         }
+        return list.GetRange(0, take);
     }
 
-
-
-
-    private void PositionCharacters()
+    private Vector2[] GeneratePositions(int count)
     {
-        Vector2[] positions = new Vector2[characters.Length];
+        Vector2[] positions = new Vector2[count];
+        int placed = 0;
+        int attemptsLimit = 500;
 
-        for (int i = 0; i < characters.Length; i++)
+        while (placed < count)
         {
-            Vector2 newPos;
             int attempts = 0;
-
+            Vector2 candidate;
+            bool ok;
             do
             {
-                newPos = new Vector2(
-                    Random.Range(minX, maxX),
-                    Random.Range(minY, maxY)
-                );
+                candidate = new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY));
+                ok = true;
+                for (int i = 0; i < placed; i++)
+                {
+                    if (Vector2.Distance(candidate, positions[i]) < minDistance)
+                    {
+                        ok = false;
+                        break;
+                    }
+                }
                 attempts++;
-            }
-            while (!IsPositionValid(newPos, positions, i) && attempts < 100);
+            } while (!ok && attempts < attemptsLimit);
 
-            positions[i] = newPos;
-            characters[i].transform.position = newPos;
+            positions[placed] = candidate;
+            placed++;
         }
-    }
 
-    private bool IsPositionValid(Vector2 pos, Vector2[] existingPositions, int currentIndex)
-    {
-        for (int i = 0; i < currentIndex; i++)
-        {
-            if (Vector2.Distance(pos, existingPositions[i]) < minDistance)
-                return false;
-        }
-        return true;
+        return positions;
     }
 }
