@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.GraphicsBuffer;
 
 public class Stage2Manager : MonoBehaviour
 {
@@ -45,36 +46,59 @@ public class Stage2Manager : MonoBehaviour
     {
         timePassed += Time.deltaTime;
 
-        // Obstacle spawning
-        spawnCooldown -= Time.deltaTime;
-        if (spawnCooldown <= 0f)
+        if (isPlaying)
         {
-            if(Random.Range(0,2) == 0)
-            { //upper
-                Instantiate(upperObstacles[0], upperSpawn.position, Quaternion.identity);
+            // Obstacle spawning
+            spawnCooldown -= Time.deltaTime;
+            if (spawnCooldown <= 0f)
+            {
+                if (Random.Range(0, 2) == 0)
+                { //upper
+                    GameObject instance = Instantiate(upperObstacles[0], upperSpawn.position, Quaternion.identity);
+                    instance.transform.parent = upperSpawn;
+                }
+                else
+                { // lower
+                    GameObject instance = Instantiate(lowerObstacles[0], lowerSpawn.position, Quaternion.identity);
+                    instance.transform.parent = lowerSpawn;
+                }
+                spawnCooldown = Random.Range(SPAWNCOOLDOWN.x, SPAWNCOOLDOWN.y);
             }
-            else
-            { // lower
-                Instantiate(lowerObstacles[0], lowerSpawn.position, Quaternion.identity);
-            }
-            spawnCooldown = Random.Range(SPAWNCOOLDOWN.x, SPAWNCOOLDOWN.y);
-        }
 
-        progressBar.value = timePassed / levelTime;
-        target.transform.position = Vector3.Lerp(targetStartPos, targetEndPos, timePassed / levelTime);
+            progressBar.value = timePassed / levelTime;
+            target.transform.position = Vector3.Lerp(targetStartPos, targetEndPos, timePassed / levelTime);
+        }
 
         if (timePassed >= levelTime)
         {
-            // start next stage
-            enabled = false;
-            isPlaying = false;
+            // start next stage here
+
+            End();
         }
     }
 
     public void Run()
     {
+        target.transform.position = targetStartPos;
         characterController.Init();
         levelTime = LEVELTIME;
+
         isPlaying = true;
+    }
+
+    public void End()
+    {
+        characterController.enabled = false;
+        isPlaying = false;
+
+        foreach(Transform child in upperSpawn)
+        {
+            Destroy(child.gameObject);
+        }
+
+        foreach (Transform child in lowerSpawn)
+        {
+            Destroy(child.gameObject);
+        }
     }
 }

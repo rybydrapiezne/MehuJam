@@ -9,26 +9,29 @@ public class CharacterController : MonoBehaviour
     [SerializeField]
     private float tilt = 0f;
 
-    public AnimationCurve tiltTimeCurve; // time for tilting to one direction
-    public float minTiltFliptime = 0.5f;
-    public float maxTiltFliptime = 3f;
-    public AnimationCurve tiltSpeedCurve; // speed for tilting
+    [SerializeField] private AnimationCurve tiltTimeCurve; // time for tilting to one direction
+    [SerializeField] private AnimationCurve tiltSpeedCurve; // speed for tilting
     private float tiltDirection = 1f;
     public float tiltSpeed = 60f; // in degrees per second
+
+    // for upgrade system, difficulty etc
+    public float playerInputModifier = 1.5f;
+    public float externalForcesModifier = 1f;
+    public float maxTiltFliptime = 3f;
 
     [SerializeField] private float playerInputTiltStrength = 0f;
     [SerializeField] private float randomnessTiltStrength = 0f;
     [SerializeField] private float physicsTiltStrength = 0f;
 
     [Header("Character movement")]
-    public float jumpForce = 200f;
+    [SerializeField] private float jumpForce = 400f;
     private bool isGrounded = false;
 
     private Rigidbody2D rb;
-    private CharacterAnimator characterAnimator;
+    public CharacterAnimator characterAnimator;
 
-    private InputAction tiltAction;
-    private InputSystem_Actions inputSystem;
+    [SerializeField] private InputActionReference tiltAction;
+    [SerializeField] private InputActionReference jumpAction;
 
     private IEnumerator tiltingCoroutine;
 
@@ -37,16 +40,12 @@ public class CharacterController : MonoBehaviour
 
     private void Awake()
     {
-        inputSystem = new InputSystem_Actions();
-        tiltAction = inputSystem.FindAction("Rotate");
-        inputSystem.FindAction("Jump").performed += Jump;
-        inputSystem.Enable();
+        jumpAction.action.performed += Jump;
     }
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        characterAnimator = GetComponent<CharacterAnimator>();
     }
 
     private void Update()
@@ -57,12 +56,12 @@ public class CharacterController : MonoBehaviour
 
     private void GameLoop(float deltaTime)
     {
-        playerInputTiltStrength = Mathf.Lerp(playerInputTiltStrength, -tiltAction.ReadValue<float>(), deltaTime * 4f);
+        playerInputTiltStrength = Mathf.Lerp(playerInputTiltStrength, -tiltAction.action.ReadValue<float>(), deltaTime * 4f);
         physicsTiltStrength = Mathf.Lerp(physicsTiltStrength, tilt, deltaTime * 4f);
 
         randomnessTiltStrength = Mathf.Lerp(randomnessTiltStrength, 0, deltaTime / 4f);
 
-        tilt += (tiltSpeed * (1.5f * playerInputTiltStrength + Mathf.Sign(randomnessTiltStrength) * tiltSpeedCurve.Evaluate(Mathf.Abs(randomnessTiltStrength)) + physicsTiltStrength + 0.05f)) * deltaTime / 90f;
+        tilt += (tiltSpeed * (playerInputModifier * playerInputTiltStrength + externalForcesModifier * (Mathf.Sign(randomnessTiltStrength) * tiltSpeedCurve.Evaluate(Mathf.Abs(randomnessTiltStrength)) + physicsTiltStrength + 0.05f))) * deltaTime / 90f;
         tilt = Mathf.Clamp(tilt, -1f, 1f);
 
         if(Mathf.Abs(tilt) >= 1f)
@@ -75,10 +74,15 @@ public class CharacterController : MonoBehaviour
 
     public void Init()
     {
-        enabled = true;
+        tilt = 0f;
+        playerInputTiltStrength = 0f;
+        randomnessTiltStrength = 0f;
+        physicsTiltStrength = 0f;
         if (tiltingCoroutine != null) StopCoroutine(tiltingCoroutine);
         tiltingCoroutine = ApplyRandomTilt();
         StartCoroutine(tiltingCoroutine);
+
+        enabled = true;
     }
 
     public void ApplyPhysicalForce(float force)

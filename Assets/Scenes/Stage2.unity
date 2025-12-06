@@ -438,6 +438,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 431462802}
   m_CullTransparentMesh: 1
+--- !u!114 &516287469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc1515ab76e54f068e2f2207940fab32, type: 3}
+  m_Name: Player/Jump
+  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.InputActionReference
+  m_Asset: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  m_ActionId: f1ba0d36-48eb-4cd5-b651-1c94a6531f70
 --- !u!1 &518295583
 GameObject:
   m_ObjectHideFlags: 0
@@ -468,7 +482,7 @@ Transform:
   m_LocalScale: {x: 0.14, y: 0.14, z: 0.14}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 544157403}
+  m_Father: {fileID: 1484981502}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &518295586
 SpriteRenderer:
@@ -570,7 +584,6 @@ GameObject:
   m_Component:
   - component: {fileID: 544157403}
   - component: {fileID: 544157405}
-  - component: {fileID: 544157404}
   - component: {fileID: 544157406}
   - component: {fileID: 544157407}
   m_Layer: 0
@@ -593,23 +606,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 592545288}
-  - {fileID: 2059446069}
-  - {fileID: 518295584}
+  - {fileID: 1484981502}
   m_Father: {fileID: 2018533824}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &544157404
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 544157402}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22fd23d0c3b5da34e8f6fa8d39598925, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CharacterAnimator
 --- !u!114 &544157405
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -647,7 +646,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  minTiltFliptime: 0.5
   maxTiltFliptime: 3
   tiltSpeedCurve:
     serializedVersion: 2
@@ -674,10 +672,15 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   tiltSpeed: 60
+  playerInputModifier: 2
+  externalForcesModifier: 1
   playerInputTiltStrength: 0
   randomnessTiltStrength: 0
   physicsTiltStrength: 0
   jumpForce: 400
+  characterAnimator: {fileID: 1484981503}
+  tiltAction: {fileID: 682542184}
+  jumpAction: {fileID: 516287469}
   manager: {fileID: 0}
 --- !u!50 &544157406
 Rigidbody2D:
@@ -864,12 +867,26 @@ Transform:
   m_GameObject: {fileID: 592545286}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.26239482, z: 0}
+  m_LocalPosition: {x: 0, y: -0.2623949, z: 0}
   m_LocalScale: {x: 0.14, y: 0.14, z: 0.14}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 544157403}
+  m_Father: {fileID: 1484981502}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &682542184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc1515ab76e54f068e2f2207940fab32, type: 3}
+  m_Name: Player/Rotate
+  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.InputActionReference
+  m_Asset: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  m_ActionId: 6ec66409-1ed5-4f2c-9538-6a6d4371569e
 --- !u!1 &757382925
 GameObject:
   m_ObjectHideFlags: 0
@@ -5868,12 +5885,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 935689805}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.5, y: 0, z: 100}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 7.19691, y: -0.29523, z: 100}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 2018533824}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1006655248
 GameObject:
@@ -6131,6 +6148,53 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!1 &1484981501
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1484981502}
+  - component: {fileID: 1484981503}
+  m_Layer: 0
+  m_Name: Sprite
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1484981502
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1484981501}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 592545288}
+  - {fileID: 2059446069}
+  - {fileID: 518295584}
+  m_Father: {fileID: 544157403}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1484981503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1484981501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22fd23d0c3b5da34e8f6fa8d39598925, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterAnimator
 --- !u!1 &1591896848
 GameObject:
   m_ObjectHideFlags: 0
@@ -6416,6 +6480,7 @@ Transform:
   - {fileID: 122681720}
   - {fileID: 41390737}
   - {fileID: 534468447}
+  - {fileID: 935689808}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2018533825
@@ -6474,7 +6539,7 @@ Transform:
   m_LocalScale: {x: 0.14, y: 0.14, z: 0.14}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 544157403}
+  m_Father: {fileID: 1484981502}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2059446071
 SpriteRenderer:
@@ -6542,4 +6607,3 @@ SceneRoots:
   - {fileID: 757382929}
   - {fileID: 336713201}
   - {fileID: 2018533824}
-  - {fileID: 935689808}
