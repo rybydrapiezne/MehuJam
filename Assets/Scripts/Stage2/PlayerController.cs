@@ -39,6 +39,8 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        externalForcesModifier = UpgradeSystem.CharacterTiltModifier;
+        playerInputModifier += 1f - UpgradeSystem.CharacterTiltModifier;
     }
 
     private void Update()

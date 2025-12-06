@@ -10,11 +10,13 @@ public static class UpgradeSystem
     private static float movementSpeedModifier = 1f;
     private static float characterTiltModifier = 1f;
     private static float pickpocketTimeExtension = 0f;
+    private static float pickpocketJiggleRate = 1f;
     private static bool hasTreasureGlass = false;
 
     public static float MovementSpeedModifier { get { return movementSpeedModifier; } }
     public static float CharacterTiltModifier { get { return characterTiltModifier; } }
     public static float PickpocketTimeExtension { get { return pickpocketTimeExtension; } }
+    public static float PickpocketJiggleRate { get { return pickpocketJiggleRate; } }
     public static bool HasTreasureGlass { get { return hasTreasureGlass; } }
 
     public enum Upgrade
@@ -23,6 +25,7 @@ public static class UpgradeSystem
         MovementSpeed,
         CharacterTilt,
         PickpocketTime,
+        PickpocketJiggle,
         TreasureGlass
     }
 
@@ -32,6 +35,7 @@ public static class UpgradeSystem
         [MovementSpeed] = 2,
         [CharacterTilt] = 3,
         [PickpocketTime] = 4,
+        [PickpocketJiggle] = 2,
         [TreasureGlass] = 1
     };
 
@@ -41,14 +45,16 @@ public static class UpgradeSystem
         [MovementSpeed] = 0,
         [CharacterTilt] = 0,
         [PickpocketTime] = 0,
+        [PickpocketJiggle] = 0,
         [TreasureGlass] = 0
     };
 
     private static void RecalculateUpgrades()
     {
         movementSpeedModifier = 1f + Get(MovementSpeed) / 10f;
-        characterTiltModifier = 1f + Get(CharacterTilt) / 8f;
+        characterTiltModifier = 1f - Get(CharacterTilt) / 8f;
         pickpocketTimeExtension = 5f * Get(PickpocketTime);
+        pickpocketJiggleRate = 1f - Get(PickpocketJiggle) / 10f;
         hasTreasureGlass = Get(TreasureGlass) > 0 ? true : false;
     }
 
