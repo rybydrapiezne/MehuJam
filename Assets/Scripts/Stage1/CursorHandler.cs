@@ -8,6 +8,7 @@ public class CursorHandler : MonoBehaviour
 
     [SerializeField] private bool isFountain = false;
     [SerializeField] private GameObject fountainUI;
+    [SerializeField] private Stage1Controller stage1Controller;
 
     private bool isOutlineVisible = false;
 
@@ -28,9 +29,9 @@ public class CursorHandler : MonoBehaviour
             {
                 fountainUI.SetActive(true);
             }
-            else
+            else if (!isFountain)
             {
-                Debug.Log("clicked on " + targetCollider.name);
+                stage1Controller.End();
             }
 
         }

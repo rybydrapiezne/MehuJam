@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public Stage1Controller stage1;
     public Stage2Manager stage2;
     public Stage3Controller stage3;
 
@@ -41,10 +42,12 @@ public class GameManager : MonoBehaviour
         if (currentStage == 1)
         {
             stage3.gameObject.SetActive(false);
-            NextStage();
+            stage1.gameObject.SetActive(true);
+            stage1.Run();
         }
         else if (currentStage == 2)
         {
+            stage1.gameObject.SetActive(false);
             stage2.gameObject.SetActive(true);
             stage2.Run();
         }
