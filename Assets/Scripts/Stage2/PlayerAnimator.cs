@@ -1,7 +1,7 @@
 using System.Linq;
 using UnityEngine;
 
-public class CharacterAnimator : MonoBehaviour
+public class PlayerAnimator : MonoBehaviour
 {
     //[Header("Settings")]
     //public string spriteSheetName; // File name inside Resources folder
