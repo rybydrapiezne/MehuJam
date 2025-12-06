@@ -552,6 +552,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c82368c928d85f64f8dff5d8c444ae7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  stage1: {fileID: 2049587343}
   stage2: {fileID: 508362149}
   stage3: {fileID: 538272546}
 --- !u!114 &135255132
@@ -7858,6 +7859,63 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!1001 &1310376595
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 360899706334888221, guid: 5f88ebcf3aaf62447adc09f1777f909f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.89587
+      objectReference: {fileID: 0}
+    - target: {fileID: 360899706334888221, guid: 5f88ebcf3aaf62447adc09f1777f909f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.4024
+      objectReference: {fileID: 0}
+    - target: {fileID: 360899706334888221, guid: 5f88ebcf3aaf62447adc09f1777f909f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 360899706334888221, guid: 5f88ebcf3aaf62447adc09f1777f909f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 360899706334888221, guid: 5f88ebcf3aaf62447adc09f1777f909f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 360899706334888221, guid: 5f88ebcf3aaf62447adc09f1777f909f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 360899706334888221, guid: 5f88ebcf3aaf62447adc09f1777f909f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 360899706334888221, guid: 5f88ebcf3aaf62447adc09f1777f909f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 360899706334888221, guid: 5f88ebcf3aaf62447adc09f1777f909f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 360899706334888221, guid: 5f88ebcf3aaf62447adc09f1777f909f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7855889579868931536, guid: 5f88ebcf3aaf62447adc09f1777f909f, type: 3}
+      propertyPath: m_Name
+      value: Stage-1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5f88ebcf3aaf62447adc09f1777f909f, type: 3}
 --- !u!1 &1315151430
 GameObject:
   m_ObjectHideFlags: 0
@@ -9571,6 +9629,17 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &2049587343 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3145966354832891483, guid: 5f88ebcf3aaf62447adc09f1777f909f, type: 3}
+  m_PrefabInstance: {fileID: 1310376595}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6e2de378368a3745bdb9526734a7d1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Stage1Controller
 --- !u!1 &2079341370
 GameObject:
   m_ObjectHideFlags: 0
@@ -10097,3 +10166,4 @@ SceneRoots:
   - {fileID: 131553256}
   - {fileID: 508362150}
   - {fileID: 538272547}
+  - {fileID: 1310376595}
