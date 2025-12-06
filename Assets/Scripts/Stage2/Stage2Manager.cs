@@ -44,7 +44,7 @@ public class Stage2Manager : MonoBehaviour
 
         characterController.manager = this;
         targetStartPos = target.transform.position;
-        targetEndPos = new Vector3(characterController.gameObject.transform.position.x + 2, targetStartPos.y, targetStartPos.z);
+        targetEndPos = new Vector3(characterController.gameObject.transform.position.x + 30, targetStartPos.y, targetStartPos.z);
 
         target.transform.position = targetStartPos;
         characterController.Init();

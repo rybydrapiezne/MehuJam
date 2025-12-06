@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private AnimationCurve tiltTimeCurve; // time for tilting to one direction
     [SerializeField] private AnimationCurve tiltSpeedCurve; // speed for tilting
     private float tiltDirection = 1f;
-    public float tiltSpeed = 60f; // in degrees per second
+    public float tiltSpeed = 70f; // in degrees per second
 
     // for upgrade system, difficulty etc
     public float playerInputModifier = 1.5f;
@@ -92,7 +92,7 @@ public class PlayerController : MonoBehaviour
     {
         if (isGrounded && manager.isPlaying)
         {
-            if (Mathf.Abs(tilt) < 0.3f)
+            if (Mathf.Abs(tilt) < 0.7f)
             {
                 physicsTiltStrength *= 2f;
             }
