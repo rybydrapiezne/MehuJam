@@ -170,7 +170,7 @@ MonoBehaviour:
   interactAction: {fileID: 555590753}
   stage1Prefab: {fileID: 7855889579868931536, guid: 5f88ebcf3aaf62447adc09f1777f909f, type: 3}
   stage2Prefab: {fileID: 3700124270632078144, guid: 5ffe57a11139ab648bdc96e700396b50, type: 3}
-  stage3Prefab: {fileID: 913962238984213277, guid: f53c954cb29bb6248b8a0686ac5164bd, type: 3}
+  stage3Prefab: {fileID: 4913131038778598323, guid: 1a439aaeab687e9b0b7e4fca0549c21f, type: 3}
   fadeCanvas: {fileID: 2144362456}
 --- !u!114 &533245150
 MonoBehaviour:

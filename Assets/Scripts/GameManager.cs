@@ -86,6 +86,7 @@ public class GameManager : MonoBehaviour
     private void ChangeStage()
     {
         currentStage++;
+        if(currentStage == 1) currentStage++;
         Debug.Log("current stage: " + currentStage);
 
         if (currentStage == 1)

@@ -93,12 +93,12 @@ public class Stage2Manager : MonoBehaviour
             }
 
             progressBar.value = timePassed / levelTime;
-        }
 
-        if (timePassed >= levelTime)
-        {
-            End();
-            endingCoroutine = StartCoroutine(ReachDestination());
+            if (timePassed >= levelTime)
+            {
+                End();
+                endingCoroutine = StartCoroutine(ReachDestination());
+            }
         }
     }
 

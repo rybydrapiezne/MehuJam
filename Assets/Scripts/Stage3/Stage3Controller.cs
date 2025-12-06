@@ -26,6 +26,13 @@ public class Stage3Controller : MonoBehaviour
     
     void OnEnable()
     {
+        if (attackAction == null || retractAction == null || interactAction == null)
+        {
+            attackAction = GameManager.Instance.attackAction;
+            retractAction = GameManager.Instance.retractAction;
+            interactAction = GameManager.Instance.interactAction;
+        }
+
         attackAction.action.started += OnGrabStart;
         attackAction.action.canceled += OnGrabEnd;
         retractAction.action.started += OnRetractStart;
