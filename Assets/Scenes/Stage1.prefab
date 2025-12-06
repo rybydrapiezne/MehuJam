@@ -2415,6 +2415,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd4e19b5ebe496e4ea9f3ea815c2ac40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlaceCharactersRandom
+  items:
+  - sprite: {fileID: -7258506057010965533, guid: 0f65d89982c18cfdd9d74306cc82d516, type: 3}
+    prefab: {fileID: -2253911629886400664, guid: fdc6206cee47296618d3db85dbf3f796, type: 3}
+  - sprite: {fileID: -7258506057010965533, guid: 6a10d76bd19bd70ec92395918b966a4f, type: 3}
+    prefab: {fileID: -2253911629886400664, guid: 9d2ceccbaa4ee094fb98ee8f843ccf86, type: 3}
+  - sprite: {fileID: -7258506057010965533, guid: a3cfb858067eb0bf7aebc76bee386c8a, type: 3}
+    prefab: {fileID: -2253911629886400664, guid: 48c1ee2a7c79bfc969250d017c538be9, type: 3}
+  - sprite: {fileID: -7258506057010965533, guid: 30c2af5a1c831d5a9ad93637485c35e2, type: 3}
+    prefab: {fileID: -2253911629886400664, guid: 8a0106c4c43f56c04b057be98285ef1c, type: 3}
   characterPrefabs:
   - {fileID: 8908136669057397293, guid: 247ede80150588f43bd651554ad45b92, type: 3}
   - {fileID: 3047878065259703502, guid: dc58db6c13e8ca648ae1f5f10842616f, type: 3}
@@ -2425,6 +2434,6 @@ MonoBehaviour:
   parentContainer: {fileID: 8202918010667555154}
   minX: 160
   maxX: -160
-  minY: 20
+  minY: -20
   maxY: 45
-  minDistance: 25
+  minDistance: 40
