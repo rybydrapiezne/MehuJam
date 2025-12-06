@@ -8,6 +8,8 @@ public class ArmExtend : MonoBehaviour
 {
     [SerializeField]
     float extendSpeed=10f;
+    [SerializeField]
+    float retractspeed=10f;
 
     [SerializeField] Transform hand;
     [SerializeField] Transform arm;
@@ -31,8 +33,8 @@ public class ArmExtend : MonoBehaviour
     {
         if (arm.localPosition.y < _baseArmLocalPos.y)
         {
-            arm.transform.Translate(Vector3.up * (Time.deltaTime * extendSpeed), Space.Self);
-            hand.transform.Translate(Vector3.up * (Time.deltaTime * extendSpeed), Space.Self);
+            arm.transform.Translate(Vector3.up * (Time.deltaTime * retractspeed), Space.Self);
+            hand.transform.Translate(Vector3.up * (Time.deltaTime * retractspeed), Space.Self);
         }
         else if (pickedUpObject)
         {

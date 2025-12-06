@@ -10,7 +10,7 @@ public class HandColliderHandler : MonoBehaviour
     [SerializeField] LayerMask itemLayer;
     bool _canPickUp;
     GameObject pickableObject=null;
-
+    
     void OnTriggerEnter2D(Collider2D other)
     {
         if ((itemLayer.value & (1 << other.gameObject.layer)) != 0)

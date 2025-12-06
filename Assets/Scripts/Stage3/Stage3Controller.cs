@@ -10,7 +10,10 @@ public class Stage3Controller : MonoBehaviour
     [SerializeField] InputActionReference interactAction;
     [SerializeField] GameObject arm;
     [SerializeField] HandColliderHandler hand;
-    
+    [SerializeField] GameObject handPickupPoint;
+    [SerializeField] Animator handAnimator;
+
+    bool _failed = false;
     bool _isExtending = false;
     bool _isRetracting = false;
     bool _retractTheHand = false;
@@ -49,17 +52,19 @@ public class Stage3Controller : MonoBehaviour
 
     void OnItemCollisionWithBorder()
     {
+        _failed = true;
         _retractTheHand = true;
     }
     void OnInteractStart(InputAction.CallbackContext obj)
     {
         GameObject pickUpItem = hand.CanPickUp();
-        if (pickUpItem != null)
+        if (pickUpItem != null && !_failed)
         {
             pickUpItem.GetComponent<Rigidbody2D>().simulated = false;
-            pickUpItem.transform.position=hand.transform.position;
+            pickUpItem.transform.position=handPickupPoint.transform.position;
             pickUpItem.transform.parent = hand.transform;
             armExtend.pickedUpObject=pickUpItem;
+            handAnimator.SetBool("PickUp",true);
             _retractTheHand = true;
         }
             
@@ -67,18 +72,23 @@ public class Stage3Controller : MonoBehaviour
 
     void OnResetHand()
     {
-        _retractTheHand = false;
-        _isRetracting = false;
-        _isExtending = false;
-        arm.GetComponent<ArmRotate>().StartRotation();
+        if (!_failed)
+        {
+            _retractTheHand = false;
+            _isRetracting = false;
+            _isExtending = false;
+            handAnimator.SetBool("PickUp", false);
+            arm.GetComponent<ArmRotate>().StartRotation();
+        }
     }
     void OnHandHit()
     {
         _retractTheHand = true;
+        _failed = true;
     }
     void OnRetractStart(InputAction.CallbackContext context)
     {
-        if(!_isExtending)
+        if(!_isExtending && !_failed)
             _isRetracting = true;
     }
 
@@ -88,7 +98,7 @@ public class Stage3Controller : MonoBehaviour
     }
     void OnGrabStart(InputAction.CallbackContext context)
     {
-        if (!_isRetracting)
+        if (!_isRetracting && !_failed)
         { 
             _isExtending = true;
             arm.GetComponent<ArmRotate>().StopRotation();
