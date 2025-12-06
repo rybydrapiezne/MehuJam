@@ -14,6 +14,12 @@ public class CursorHandler : MonoBehaviour
 
     private void Update()
     {
+        if (fountainUI != null && fountainUI.activeSelf)
+        {
+            outline.SetActive(false);
+            return;
+        }
+
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
 
         bool isCursorOnTarget = targetCollider.OverlapPoint(mousePos);
