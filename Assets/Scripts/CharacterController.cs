@@ -12,23 +12,17 @@ public class CharacterController : MonoBehaviour
     public AnimationCurve tiltTimeCurve; // time for tilting to one direction
     public float minTiltFliptime = 0.5f;
     public float maxTiltFliptime = 3f;
-    public AnimationCurve tiltSpeedCurve; // speed for tilting, bounces back
-    private float varTiltSpeed = 0f;
-    private float varTiltSpeedSig = 1f;
+    public AnimationCurve tiltSpeedCurve; // speed for tilting
     private float tiltDirection = 1f;
-    public float tiltSpeed = 30f; // in degrees per second
+    public float tiltSpeed = 60f; // in degrees per second
 
+    [SerializeField] private float playerInputTiltStrength = 0f;
+    [SerializeField] private float randomnessTiltStrength = 0f;
+    [SerializeField] private float physicsTiltStrength = 0f;
 
     [Header("Character movement")]
     public float jumpForce = 200f;
-    public float LEVELTIME = 30f; // base time in seconds
-    [SerializeField] private float levelTime; // with modifiers
-
-    [SerializeField]
-    private float timePassed = 0f;
-
-    [SerializeField]
-    private bool isPlaying = false;
+    private bool isGrounded = false;
 
     private Rigidbody2D rb;
     private CharacterAnimator characterAnimator;
@@ -38,10 +32,14 @@ public class CharacterController : MonoBehaviour
 
     private IEnumerator tiltingCoroutine;
 
+    [HideInInspector]
+    public Stage2Manager manager;
+
     private void Awake()
     {
         inputSystem = new InputSystem_Actions();
         tiltAction = inputSystem.FindAction("Rotate");
+        inputSystem.FindAction("Jump").performed += Jump;
         inputSystem.Enable();
     }
 
@@ -49,68 +47,84 @@ public class CharacterController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         characterAnimator = GetComponent<CharacterAnimator>();
-        Run();
     }
 
     private void Update()
     {
-        if (isPlaying)
+        if (manager.isPlaying)
             GameLoop(Time.deltaTime);
     }
 
     private void GameLoop(float deltaTime)
     {
-        timePassed += deltaTime;
-        
-        // Tilt speed
-        varTiltSpeed += deltaTime * varTiltSpeedSig;
+        playerInputTiltStrength = Mathf.Lerp(playerInputTiltStrength, -tiltAction.ReadValue<float>(), deltaTime * 4f);
+        physicsTiltStrength = Mathf.Lerp(physicsTiltStrength, tilt, deltaTime * 4f);
 
-        if (varTiltSpeed <= 0f){
-            varTiltSpeed = 0f;
-            varTiltSpeedSig = 1f;
-        }
+        randomnessTiltStrength = Mathf.Lerp(randomnessTiltStrength, 0, deltaTime / 4f);
 
-        if (varTiltSpeed >= 1f)
-        {
-            varTiltSpeed = 1f;
-            varTiltSpeedSig = -1f;
-        }
-
-        // Tilt direction choosing
-        tilt += tiltSpeed * tiltSpeedCurve.Evaluate(varTiltSpeed) * tiltDirection * deltaTime / 90f;
-        tilt += tiltSpeed * 1.2f * -tiltAction.ReadValue<float>() * deltaTime / 90f;
+        tilt += (tiltSpeed * (1.5f * playerInputTiltStrength + Mathf.Sign(randomnessTiltStrength) * tiltSpeedCurve.Evaluate(Mathf.Abs(randomnessTiltStrength)) + physicsTiltStrength + 0.05f)) * deltaTime / 90f;
         tilt = Mathf.Clamp(tilt, -1f, 1f);
 
-        characterAnimator.SetTilt(tilt);
-
-        if (timePassed >= levelTime)
+        if(Mathf.Abs(tilt) >= 1f)
         {
-            // start next stage
-            enabled = false;
-            isPlaying = false;
+            Debug.Log("oops fell over");
+        }
+
+        characterAnimator.SetTilt(tilt);
+    }
+
+    public void Init()
+    {
+        enabled = true;
+        if (tiltingCoroutine != null) StopCoroutine(tiltingCoroutine);
+        tiltingCoroutine = ApplyRandomTilt();
+        StartCoroutine(tiltingCoroutine);
+    }
+
+    public void ApplyPhysicalForce(float force)
+    {
+        if (enabled)
+        {
+            physicsTiltStrength += force;
         }
     }
 
-    public void Run()
+    private void Jump(InputAction.CallbackContext context)
     {
-        enabled = true;
-        timePassed = 0;
-        levelTime = LEVELTIME;
-
-        tiltingCoroutine = FlipTiltDirection();
-        StartCoroutine(tiltingCoroutine);
-
-        isPlaying = true;
+        if (isGrounded)
+        {
+            if (Mathf.Abs(tilt) < 0.3f)
+            {
+                physicsTiltStrength *= 2f;
+            }
+            else
+            {
+                physicsTiltStrength *= 20f;
+            }
+            rb.AddForceY(jumpForce);
+            isGrounded = false;
+        }
     }
 
-    private IEnumerator FlipTiltDirection()
+    private IEnumerator ApplyRandomTilt()
     {
         while(true)
         {
-            float timeToWait = minTiltFliptime + tiltTimeCurve.Evaluate(Random.Range(0f, 1f)) * (maxTiltFliptime - minTiltFliptime);
+            float timeToWait = tiltTimeCurve.Evaluate(Random.Range(0f, 1f)) * maxTiltFliptime;
 
             yield return new WaitForSeconds(timeToWait);
-            tiltDirection = -tiltDirection;
+            if(Mathf.Abs(tilt) < .3f){
+                tiltDirection = (Random.Range(0,2) * 2) - 1;
+                randomnessTiltStrength = tiltDirection * tiltTimeCurve.Evaluate(Random.Range(0f, 1f));
+            }
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        {
+            isGrounded = true;
         }
     }
 }
