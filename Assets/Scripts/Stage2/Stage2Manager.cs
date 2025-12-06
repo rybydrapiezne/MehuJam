@@ -70,11 +70,13 @@ public class Stage2Manager : MonoBehaviour
                 { //upper
                     GameObject instance = Instantiate(upperObstacles[0], upperSpawn.position, Quaternion.identity);
                     instance.transform.parent = upperSpawn;
+                    instance.GetComponent<ObstacleMover>().knockbackForce = 1f;
                 }
                 else
                 { // lower
                     GameObject instance = Instantiate(lowerObstacles[0], lowerSpawn.position, Quaternion.identity);
                     instance.transform.parent = lowerSpawn;
+                    instance.GetComponent<ObstacleMover>().knockbackForce = -1f;
                 }
                 spawnCooldown = Random.Range(SPAWNCOOLDOWN.x, SPAWNCOOLDOWN.y);
             }

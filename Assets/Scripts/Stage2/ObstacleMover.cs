@@ -5,6 +5,7 @@ public class ObstacleMover : MonoBehaviour
     public float speed = 20f;
     public float ttl = 10f;
     private float time = 0;
+    public float knockbackForce = 1f; // >0 is left, <0 is right
 
     void Update()
     {
@@ -19,8 +20,8 @@ public class ObstacleMover : MonoBehaviour
         Debug.Log("trigger enter");
         if(collision != null)
         {
-           PlayerController controller = collision.GetComponent<PlayerController>();
-           controller.ApplyPhysicalForce(0.2f);
+           PlayerController controller = collision.transform.parent.gameObject.GetComponent<PlayerController>();
+           controller.ApplyPhysicalForce(knockbackForce);
         }
     }
 }
