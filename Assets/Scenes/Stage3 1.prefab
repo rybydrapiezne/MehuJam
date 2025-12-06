@@ -169,8 +169,8 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 6.632182, y: 4.464935}
-      - {x: -9.627968, y: 4.462172}
+    - - {x: 6.6799793, y: 3.6960065}
+      - {x: -9.604069, y: 3.7348073}
       - {x: -9.544837, y: -0.6543921}
       - {x: -6.097254, y: -0.7247497}
       - {x: 5.5382733, y: -0.8032154}
@@ -358,7 +358,7 @@ MonoBehaviour:
   itemLayer:
     serializedVersion: 2
     m_Bits: 256
-  middle: {fileID: 0}
+  middle: {fileID: 2920865927403129354}
 --- !u!1 &180423775589421552
 GameObject:
   m_ObjectHideFlags: 0
@@ -541,7 +541,7 @@ MonoBehaviour:
   itemLayer:
     serializedVersion: 2
     m_Bits: 256
-  middle: {fileID: 0}
+  middle: {fileID: 2920865927403129354}
 --- !u!1 &310487937849910684
 GameObject:
   m_ObjectHideFlags: 0
@@ -815,6 +815,7 @@ GameObject:
   - component: {fileID: 3176884513533481631}
   - component: {fileID: 7181758217705260386}
   - component: {fileID: 9035203806079932004}
+  - component: {fileID: 5521862537448195661}
   m_Layer: 6
   m_Name: Open Sprite Shape (1)
   m_TagString: Untagged
@@ -1004,6 +1005,22 @@ PolygonCollider2D:
       - {x: 2.5667295, y: -0.9620222}
       - {x: 2.5349028, y: -0.4891512}
   m_UseDelaunayMesh: 1
+--- !u!114 &5521862537448195661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4707743830277062990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 499b4bb8936b9667aa6f23304153adae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ItemCollisionHandler
+  itemLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  middle: {fileID: 2920865927403129354}
 --- !u!1 &4795235582775950129
 GameObject:
   m_ObjectHideFlags: 0
@@ -1186,7 +1203,7 @@ MonoBehaviour:
   itemLayer:
     serializedVersion: 2
     m_Bits: 256
-  middle: {fileID: 0}
+  middle: {fileID: 2920865927403129354}
 --- !u!1 &4913131038778598323
 GameObject:
   m_ObjectHideFlags: 0
@@ -1375,6 +1392,7 @@ GameObject:
   - component: {fileID: 6553617806522285748}
   - component: {fileID: 6745838929541557173}
   - component: {fileID: 3487689587078234453}
+  - component: {fileID: 1786279559020018627}
   m_Layer: 6
   m_Name: Open Sprite Shape
   m_TagString: Untagged
@@ -1652,6 +1670,22 @@ PolygonCollider2D:
       - {x: 2.5667295, y: -0.9620222}
       - {x: 2.5349028, y: -0.4891512}
   m_UseDelaunayMesh: 1
+--- !u!114 &1786279559020018627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5263454049554003981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 499b4bb8936b9667aa6f23304153adae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ItemCollisionHandler
+  itemLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  middle: {fileID: 2920865927403129354}
 --- !u!1 &5490099872538939526
 GameObject:
   m_ObjectHideFlags: 0
