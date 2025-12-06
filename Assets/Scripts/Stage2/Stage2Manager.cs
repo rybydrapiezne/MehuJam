@@ -71,9 +71,8 @@ public class Stage2Manager : MonoBehaviour
 
         if (timePassed >= levelTime)
         {
-            // start next stage here
-
             End();
+            GameManager.Instance.NextStage();
         }
     }
 

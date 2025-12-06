@@ -44,7 +44,7 @@ public class Stage3Controller : MonoBehaviour
         GameEvents.OnHandReset-=OnResetHand;
         GameEvents.OnItemCollisionWithBorder -= OnItemCollisionWithBorder;
 
-
+        GameManager.Instance.NextStage();
     }
 
     void OnItemCollisionWithBorder()

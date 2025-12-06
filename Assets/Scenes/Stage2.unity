@@ -646,7 +646,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  maxTiltFliptime: 3
   tiltSpeedCurve:
     serializedVersion: 2
     m_Curve:
@@ -674,6 +673,7 @@ MonoBehaviour:
   tiltSpeed: 60
   playerInputModifier: 2
   externalForcesModifier: 1
+  maxTiltFliptime: 3
   playerInputTiltStrength: 0
   randomnessTiltStrength: 0
   physicsTiltStrength: 0
@@ -1033,7 +1033,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 908381080}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6206,7 +6206,7 @@ GameObject:
   - component: {fileID: 1591896849}
   - component: {fileID: 1591896850}
   - component: {fileID: 1591896851}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}

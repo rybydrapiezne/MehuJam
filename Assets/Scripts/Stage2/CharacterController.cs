@@ -25,7 +25,7 @@ public class CharacterController : MonoBehaviour
 
     [Header("Character movement")]
     [SerializeField] private float jumpForce = 400f;
-    private bool isGrounded = false;
+    private bool isGrounded = true;
 
     private Rigidbody2D rb;
     public CharacterAnimator characterAnimator;
