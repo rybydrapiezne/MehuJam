@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -32,6 +34,9 @@ public class GameManager : MonoBehaviour
 
     private int currentStage = 0;
 
+    [Header("UI")]
+    [SerializeField] private CanvasGroup fadeCanvas;
+
     private void Awake()
     {
         if (instance)
@@ -49,6 +54,36 @@ public class GameManager : MonoBehaviour
     }
 
     public void NextStage()
+    {
+        StartCoroutine(FadeTransition(1f, ChangeStage));
+    }
+
+    private IEnumerator FadeTransition(float time, Action delg)
+    {
+        time = time / 2f;
+        float timer = 0f;
+        while (timer < time)
+        {
+            timer += Time.deltaTime;
+            fadeCanvas.alpha = Mathf.Lerp(0f, 1f, timer / time);
+
+            yield return null;
+        }
+
+        delg();
+
+        timer = 0f;
+        while (timer < time)
+        {
+            timer += Time.deltaTime;
+            fadeCanvas.alpha = Mathf.Lerp(1f, 0f, timer / time);
+
+            yield return null;
+        }
+        fadeCanvas.alpha = 0f;
+    }
+
+    private void ChangeStage()
     {
         currentStage++;
         Debug.Log("current stage: " + currentStage);

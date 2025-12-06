@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -5,6 +6,8 @@ using static UnityEngine.GraphicsBuffer;
 
 public class Stage2Manager : MonoBehaviour
 {
+    [SerializeField] AnimationCurve translateCurve;
+
     public float LEVELTIME = 30f; // base time in seconds
     [SerializeField] private float levelTime; // with modifiers
 
@@ -13,13 +16,13 @@ public class Stage2Manager : MonoBehaviour
 
     public bool isPlaying = false;
 
-    public PlayerController characterController;
+    public PlayerController playerController;
 
     public Slider progressBar;
 
     public GameObject target;
     private Vector3 targetStartPos;
-    private Vector3 targetEndPos;
+    public Transform targetEndPos;
 
     [Header("Obstacles")]
     public Transform lowerSpawn;
@@ -34,6 +37,8 @@ public class Stage2Manager : MonoBehaviour
     [SerializeField] private InputActionReference tiltAction;
     public InputActionReference jumpAction;
 
+    private Coroutine endingCoroutine;
+
     private void Start()
     {
         if(tiltAction == null || jumpAction == null)
@@ -42,15 +47,21 @@ public class Stage2Manager : MonoBehaviour
             jumpAction = GameManager.Instance.jumpAction;
         }
 
-        characterController.manager = this;
+        playerController.manager = this;
         targetStartPos = target.transform.position;
-        targetEndPos = new Vector3(characterController.gameObject.transform.position.x + 30, targetStartPos.y, targetStartPos.z);
 
         target.transform.position = targetStartPos;
-        characterController.Init();
+        playerController.Init();
         levelTime = LEVELTIME;
 
+        StartCoroutine(EnterScene());
+
         isPlaying = true;
+    }
+
+    private void OnDestroy()
+    {
+        if (endingCoroutine != null) StopCoroutine(endingCoroutine);
     }
 
     private void Update()
@@ -60,7 +71,7 @@ public class Stage2Manager : MonoBehaviour
         if (isPlaying)
         {
             // Player input
-            characterController.tiltInput = tiltAction.action.ReadValue<float>();
+            playerController.tiltInput = tiltAction.action.ReadValue<float>();
 
             // Obstacle spawning
             spawnCooldown -= Time.deltaTime;
@@ -82,19 +93,18 @@ public class Stage2Manager : MonoBehaviour
             }
 
             progressBar.value = timePassed / levelTime;
-            target.transform.position = Vector3.Lerp(targetStartPos, targetEndPos, timePassed / levelTime);
         }
 
         if (timePassed >= levelTime)
         {
             End();
-            GameManager.Instance.NextStage();
+            endingCoroutine = StartCoroutine(ReachDestination());
         }
     }
 
     public void End()
     {
-        characterController.enabled = false;
+        playerController.enabled = false;
         isPlaying = false;
 
         foreach(Transform child in upperSpawn)
@@ -106,5 +116,56 @@ public class Stage2Manager : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
+    }
+
+    private IEnumerator EnterScene()
+    {
+        float time1 = 2f;
+        float timer = 0f;
+        Vector3 playerEndPos = playerController.transform.position;
+        while (time1 > timer)
+        {
+            timer += Time.deltaTime;
+            playerController.transform.position = Vector3.Lerp(playerEndPos + new Vector3(-100, 0, 0), playerEndPos, translateCurve.Evaluate(timer / time1));
+
+            yield return null;
+        }
+
+        playerController.transform.position = playerEndPos;
+
+        yield return null;
+    }
+
+    private IEnumerator ReachDestination()
+    {
+        float time1 = 1f;
+        float time2 = 2f;
+        float time3 = 1.7f;
+        float timer = 0f;
+        bool isChangingScene = false;
+        Vector3 playerStartPos = playerController.transform.position;
+        while (time2 > timer)
+        {
+            timer += Time.deltaTime;
+            if (time1 > timer)
+            {
+                target.transform.position = Vector3.Lerp(targetStartPos, targetEndPos.position, translateCurve.Evaluate(timer / time1));
+
+                playerController.tilt = Mathf.Lerp(playerController.tilt, -.1f, timer / time1);
+                playerController.characterAnimator.SetTilt(playerController.tilt);
+            }
+
+            playerController.transform.position = Vector3.Lerp(playerStartPos, target.transform.position + new Vector3(-30, 11.5f, 0), translateCurve.Evaluate(timer / time2));
+
+            if (timer > time3 && !isChangingScene)
+            {
+                GameManager.Instance.NextStage();
+                isChangingScene = true;
+            }
+
+            yield return null;
+        }
+
+        yield return null;
     }
 }

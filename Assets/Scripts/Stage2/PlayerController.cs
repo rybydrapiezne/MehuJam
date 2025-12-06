@@ -6,8 +6,7 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     [Header("Character tilt")]
-    [SerializeField]
-    private float tilt = 0f;
+    public float tilt = 0f;
 
     [SerializeField] private AnimationCurve tiltTimeCurve; // time for tilting to one direction
     [SerializeField] private AnimationCurve tiltSpeedCurve; // speed for tilting
@@ -78,6 +77,11 @@ public class PlayerController : MonoBehaviour
         if (tiltingCoroutine != null) StopCoroutine(tiltingCoroutine);
         tiltingCoroutine = ApplyRandomTilt();
         StartCoroutine(tiltingCoroutine);
+    }
+
+    private void OnDestroy()
+    {
+        manager.jumpAction.action.performed -= Jump;
     }
 
     public void ApplyPhysicalForce(float force)
