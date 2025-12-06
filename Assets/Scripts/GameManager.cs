@@ -50,6 +50,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        //Debug.Log(UpgradeSystem.TryToUpgrade(UpgradeSystem.Upgrade.TreasureGlass));
+        UpgradeSystem.SystemReset();
         NextStage();
     }
 

@@ -52,7 +52,7 @@ public static class UpgradeSystem
     private static void RecalculateUpgrades()
     {
         movementSpeedModifier = 1f + Get(MovementSpeed) / 10f;
-        characterTiltModifier = 1f - Get(CharacterTilt) / 8f;
+        characterTiltModifier = 1f + Get(CharacterTilt) / 8f;
         pickpocketTimeExtension = 5f * Get(PickpocketTime);
         pickpocketJiggleRate = 1f - Get(PickpocketJiggle) / 10f;
         hasTreasureGlass = Get(TreasureGlass) > 0 ? true : false;
@@ -70,7 +70,7 @@ public static class UpgradeSystem
     // Returns true if upgrade suceeded
     public static bool TryToUpgrade(Upgrade upgrade)
     {
-        if (upgrades[upgrade] + 1 >= maxUpgrades[upgrade]) return false;
+        if (upgrades[upgrade] + 1 > maxUpgrades[upgrade]) return false;
 
         upgrades[upgrade] += 1;
 
