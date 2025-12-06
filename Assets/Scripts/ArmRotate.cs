@@ -27,4 +27,9 @@ public class ArmRotate : MonoBehaviour
     {
         _shouldRotate = false;
     }
+
+    public void StartRotation()
+    {
+        _shouldRotate = true;
+    }
 }

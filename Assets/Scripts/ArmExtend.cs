@@ -1,5 +1,7 @@
 using System;
+using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.Events;
 using Vector3 = UnityEngine.Vector3;
 
 public class ArmExtend : MonoBehaviour
@@ -10,6 +12,9 @@ public class ArmExtend : MonoBehaviour
     [SerializeField] Transform hand;
     [SerializeField] Transform arm;
     Vector3 _baseArmLocalPos;
+
+
+    public GameObject pickedUpObject=null;
 
     void Start()
     {
@@ -28,6 +33,12 @@ public class ArmExtend : MonoBehaviour
         {
             arm.transform.Translate(Vector3.up * (Time.deltaTime * extendSpeed), Space.Self);
             hand.transform.Translate(Vector3.up * (Time.deltaTime * extendSpeed), Space.Self);
+        }
+        else if (pickedUpObject)
+        {
+            Destroy(pickedUpObject);
+            pickedUpObject = null;
+            GameEvents.HandReset();
         }
 
     }
