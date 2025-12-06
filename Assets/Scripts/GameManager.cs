@@ -11,9 +11,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public Stage1Controller stage1;
-    public Stage2Manager stage2;
-    public Stage3Controller stage3;
+    public GameObject stage1Prefab;
+    public GameObject stage2Prefab;
+    public GameObject stage3Prefab;
+
+    private Stage1Controller stage1;
+    private Stage2Manager stage2;
+    private Stage3Controller stage3;
 
     private int currentStage = 0;
 
@@ -36,26 +40,22 @@ public class GameManager : MonoBehaviour
     public void NextStage()
     {
         currentStage++;
-
-        // might change to instantiating/destroying stage controllers
+        Debug.Log("current stage: " + currentStage);
 
         if (currentStage == 1)
         {
-            stage3.gameObject.SetActive(false);
-            stage1.gameObject.SetActive(true);
-            stage1.Run();
+            if (stage3 != null) Destroy(stage3.gameObject);
+            stage1 = Instantiate(stage1Prefab).GetComponent<Stage1Controller>();
         }
         else if (currentStage == 2)
         {
-            stage1.gameObject.SetActive(false);
-            stage2.gameObject.SetActive(true);
-            //stage2.Run();
+            if (stage1 != null) Destroy(stage1.gameObject);
+            stage2 = Instantiate(stage2Prefab).GetComponent<Stage2Manager>();
         }
         else if (currentStage == 3)
         {
-            stage2.gameObject.SetActive(false);
-            stage3.gameObject.SetActive(true);
-            stage3.enabled = true;
+            if (stage2 != null) Destroy(stage2.gameObject);
+            stage3 = Instantiate(stage3Prefab).GetComponent<Stage3Controller>();
             currentStage = 0;
         }
     }
