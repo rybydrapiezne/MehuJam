@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 3285d82ba6b962efa88c1fe446ed739b
+guid: 81e5ee310341b894a9143e31bfbb1542
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -246,7 +246,7 @@ ScriptedImporter:
       y: 4
       width: 84
       height: 72
-    spriteID: f7775e6a6cd3b58d6b25a717b7a0d178
+    spriteID: 39c351a43a171f54595769ddc3d62d34
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -267,7 +267,7 @@ ScriptedImporter:
       y: 52
       width: 7
       height: 6
-    spriteID: 86bceca0af27a7b018c7438ae25f517c
+    spriteID: 9de3d239b4b48a648b37e2d98fdff20f
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -288,7 +288,7 @@ ScriptedImporter:
       y: 4
       width: 16
       height: 16
-    spriteID: 53646a0674a57659ab801031d52e8293
+    spriteID: 7b5e634b2c5dcd1488156bd4ffa3d705
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -309,7 +309,7 @@ ScriptedImporter:
       y: 28
       width: 16
       height: 16
-    spriteID: 3ac9deb6bf647f4c784ceafd56feae1a
+    spriteID: aabfc18d6b95c45498404b2ee4cfd156
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -363,7 +363,7 @@ ScriptedImporter:
         y: 28
         width: 84
         height: 72
-      spriteId: f7775e6a6cd3b58d6b25a717b7a0d178
+      spriteId: 39c351a43a171f54595769ddc3d62d34
     linkedCells: []
     tileCells: []
     tileSetIndex: 0
@@ -388,7 +388,7 @@ ScriptedImporter:
         y: 89
         width: 7
         height: 6
-      spriteId: 86bceca0af27a7b018c7438ae25f517c
+      spriteId: 9de3d239b4b48a648b37e2d98fdff20f
     linkedCells: []
     tileCells: []
     tileSetIndex: 0
@@ -421,13 +421,13 @@ ScriptedImporter:
         x: 16
         y: 16
       name: Tileset_0_1
-      spriteId: 53646a0674a57659ab801031d52e8293
+      spriteId: 7b5e634b2c5dcd1488156bd4ffa3d705
     - tileId: 2
       size:
         x: 16
         y: 16
       name: Tileset_0_2
-      spriteId: 3ac9deb6bf647f4c784ceafd56feae1a
+      spriteId: aabfc18d6b95c45498404b2ee4cfd156
     guid: -1102077067
   platformSettings:
   - name: DefaultTexturePlatform
