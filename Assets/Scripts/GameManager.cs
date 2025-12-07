@@ -61,7 +61,8 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         //Debug.Log(UpgradeSystem.TryToUpgrade(UpgradeSystem.Upgrade.TreasureGlass));
-        UpgradeSystem.SystemReset();
+        UpgradeSystem.Reset();
+        Wallet.Reset();
         foreach (Items item in defaultItems)
             Items.Add(item);
         ErrorCanvas = errorCanvasGroup;

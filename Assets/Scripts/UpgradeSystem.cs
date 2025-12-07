@@ -18,6 +18,7 @@ public static class UpgradeSystem
         CharacterTilt,
         PickpocketTime,
         PickpocketJiggle,
+        PickpocketTries,
         TreasureGlass
     }
 
@@ -28,6 +29,7 @@ public static class UpgradeSystem
         [CharacterTilt] = 3,
         [PickpocketTime] = 4,
         [PickpocketJiggle] = 2,
+        [PickpocketTries] = 2,
         [TreasureGlass] = 1
     };
 
@@ -37,19 +39,13 @@ public static class UpgradeSystem
         [MovementSpeed] = 3,
         [CharacterTilt] = 5,
         [PickpocketTime] = 4,
-        [PickpocketJiggle] = 5,
+        [PickpocketJiggle] = 3,
+        [PickpocketTries] = 4,
         [TreasureGlass] = 8
     };
 
     private static Dictionary<Upgrade, int> upgrades = new Dictionary<Upgrade, int>
-    {
-        [None] = 0,
-        [MovementSpeed] = 0,
-        [CharacterTilt] = 0,
-        [PickpocketTime] = 0,
-        [PickpocketJiggle] = 0,
-        [TreasureGlass] = 0
-    };
+    { };
 
     private static void RecalculateUpgrades()
     {
@@ -61,7 +57,7 @@ public static class UpgradeSystem
     }
 
     // Resets all upgrades to level 0
-    public static void SystemReset()
+    public static void Reset()
     {
         foreach (Upgrade up in (Upgrade[]) Enum.GetValues(typeof(Upgrade)))
         {
