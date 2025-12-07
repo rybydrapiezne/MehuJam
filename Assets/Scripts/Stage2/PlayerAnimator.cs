@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerAnimator : MonoBehaviour
 {
     public Animator hipki;
+    public Animator hipkiCloak;
     public Animator downChar;
 
     private int tiltParamID;
@@ -16,7 +17,9 @@ public class PlayerAnimator : MonoBehaviour
 
     public void SetTilt(float tilt)
     {
-        hipki.SetFloat(tiltParamID, Mathf.Clamp((-tilt + 1) / 2f, 0f, 0.99f));
+        float normalized = Mathf.Clamp((-tilt + 1) / 2f, 0f, 0.99f);
+        hipki.SetFloat(tiltParamID, normalized);
+        hipkiCloak.SetFloat(tiltParamID, normalized);
         transform.eulerAngles = new Vector3(0, 0, tilt*30);
     }
 }
