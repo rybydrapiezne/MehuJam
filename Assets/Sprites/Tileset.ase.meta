@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c5f22ac0ddd6c6d689d73c01492b5ba2
+guid: dc686370c4e79c02ab99b92d588a513b
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -36,7 +36,7 @@ ScriptedImporter:
     spriteMeshType: 1
     alignment: 0
     spritePivot: {x: 0.5, y: 0.5}
-    spritePixelsToUnits: 120
+    spritePixelsToUnits: 1
     spriteBorder: {x: 0, y: 0, z: 0, w: 0}
     spriteGenerateFallbackPhysicsShape: 0
     generateCubemap: 6
@@ -102,7 +102,7 @@ ScriptedImporter:
     generateIndividualEvents: 1
     generateSpriteAtlas: 1
   importFileNodeState: 1
-  platformSettingsDirtyTick: 639006646620578330
+  platformSettingsDirtyTick: 639006382856038601
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -137,8 +137,8 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 27
-      height: 34
+      width: 16
+      height: 32
     spriteID: 78a718a749caaf840b63d0b0b16ff086
     spriteBone: []
     spriteOutline: []
@@ -163,14 +163,14 @@ ScriptedImporter:
     layerType: 0
     blendMode: 0
     cells:
-    - name: Keys 1
+    - name: Tileset
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
         x: 0
         y: 0
-        width: 27
-        height: 34
+        width: 16
+        height: 32
       spriteId: 78a718a749caaf840b63d0b0b16ff086
     linkedCells: []
     tileCells: []
@@ -229,5 +229,5 @@ ScriptedImporter:
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 27, y: 34}
-  previousTextureSize: {x: 64, y: 64}
+  canvasSize: {x: 16, y: 32}
+  previousTextureSize: {x: 32, y: 64}

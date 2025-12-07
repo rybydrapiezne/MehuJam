@@ -72,7 +72,7 @@ ScriptedImporter:
     textureFormatSet: 0
     applyGammaDecoding: 0
   previousAsepriteImporterSettings:
-    fileImportMode: 1
+    fileImportMode: 2
     importHiddenLayers: 0
     layerImportMode: 1
     defaultPivotSpace: 0
@@ -87,7 +87,7 @@ ScriptedImporter:
     generateIndividualEvents: 1
     generateSpriteAtlas: 1
   asepriteImporterSettings:
-    fileImportMode: 1
+    fileImportMode: 2
     importHiddenLayers: 0
     layerImportMode: 1
     defaultPivotSpace: 0
@@ -149,34 +149,121 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
   spriteSheetImportData: []
-  tileSetImportData: []
+  tileSetImportData:
+  - name: Tileset_0_1
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 4
+      width: 16
+      height: 16
+    spriteID: d477d5cbe89670bc5a7f95a15bc8a2d5
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 4}
+  - name: Tileset_0_2
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 28
+      width: 16
+      height: 16
+    spriteID: 24f7a9a068c212af8ba021f2b8464562
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 28}
+  - name: Tileset_0_3
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    customData: 
+    rect:
+      serializedVersion: 2
+      x: 28
+      y: 4
+      width: 16
+      height: 16
+    spriteID: c6f6deffb092b5c02b7a1a3b17df4563
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 28, y: 4}
   asepriteLayers:
   - layerIndex: 0
     uuid:
-      value0: 4121939699
+      value0: 2048707161
       value1: 0
       value2: 0
       value3: 0
     guid: 0
-    name: Scene1
-    layerFlags: 0
-    layerType: 0
+    name: Tilemap 1
+    layerFlags: 3
+    layerType: 2
     blendMode: 0
-    cells:
-    - name: Scene1
-      frameIndex: 0
-      additiveSortOrder: 0
-      cellRect:
-        x: 49
-        y: 18
-        width: 58
-        height: 105
-      spriteId: 206b8bc2019a8204eb380888935dc0a0
+    cells: []
     linkedCells: []
-    tileCells: []
+    tileCells:
+    - layerIndex: 0
+      frameIndex: 0
+      cellRect:
+        x: 0
+        y: 0
+        width: 16
+        height: 9
+      tileIndices: 010000000100000001000000010000000100000001000000010000000100000001000000020000000200000002000000010000000100000001000000010000000100000001000000020000000100000003000000010000000100000001000000010000000200000001000000010000000100000001000000010000000100000001000000030000000100000002000000020000000200000003000000020000000100000001000000020000000100000001000000020000000100000002000000020000000300000003000000030000000300000001000000020000000300000001000000010000000100000002000000020000000100000002000000020000000300000003000000010000000300000003000000030000000100000002000000020000000200000001000000010000000300000001000000010000000200000001000000020000000100000001000000020000000200000001000000020000000300000001000000010000000100000001000000010000000100000001000000010000000100000001000000020000000200000001000000030000000100000001000000010000000300000003000000020000000200000003000000010000000200000001000000010000000300000002000000020000000300000001000000020000000300000001000000010000000100000002000000020000000100000001000000010000000100000003000000030000000300000001000000010000000100000001000000010000000100000001000000010000000100000001000000
     tileSetIndex: 0
     parentIndex: -1
-  tileSets: []
+  tileSets:
+  - id: 0
+    name: Tileset_0
+    tileSize:
+      x: 16
+      y: 16
+    tiles:
+    - tileId: 1
+      size:
+        x: 16
+        y: 16
+      name: Tileset_0_1
+      spriteId: d477d5cbe89670bc5a7f95a15bc8a2d5
+    - tileId: 2
+      size:
+        x: 16
+        y: 16
+      name: Tileset_0_2
+      spriteId: 24f7a9a068c212af8ba021f2b8464562
+    - tileId: 3
+      size:
+        x: 16
+        y: 16
+      name: Tileset_0_3
+      spriteId: c6f6deffb092b5c02b7a1a3b17df4563
+    guid: -1102077067
   platformSettings:
   - name: DefaultTexturePlatform
     overridden: 0
@@ -230,4 +317,4 @@ ScriptedImporter:
   secondarySpriteTextures: []
   spritePackingTag: 
   canvasSize: {x: 256, y: 144}
-  previousTextureSize: {x: 128, y: 128}
+  previousTextureSize: {x: 64, y: 64}
