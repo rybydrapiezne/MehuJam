@@ -48,7 +48,6 @@ public class FountainUIController : MonoBehaviour
 
     private void SelectUpgrade(int upgrade)
     {
-        Debug.Log(upgrade);
         selectedUpgrade = upgradeOrder[upgrade];
 
         for (int i = 0; i < upgradeButtons.Length; i++)

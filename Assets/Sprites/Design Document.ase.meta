@@ -129,7 +129,7 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: Design Document
     originalName: 
-    pivot: {x: 0.53072625, y: -0.23589744}
+    pivot: {x: 1.24581, y: -1.548718}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -168,7 +168,7 @@ ScriptedImporter:
       additiveSortOrder: 0
       cellRect:
         x: 33
-        y: 46
+        y: 302
         width: 179
         height: 195
       spriteId: d765fa3e8fb44064490b2f500e5de6b9
@@ -229,5 +229,5 @@ ScriptedImporter:
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 256, y: 256}
+  canvasSize: {x: 512, y: 512}
   previousTextureSize: {x: 256, y: 256}
