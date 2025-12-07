@@ -36,11 +36,14 @@ public class ArmExtend : MonoBehaviour
             arm.transform.Translate(Vector3.up * (Time.deltaTime * retractspeed), Space.Self);
             hand.transform.Translate(Vector3.up * (Time.deltaTime * retractspeed), Space.Self);
         }
-        else if (pickedUpObject)
+        else
         {
+            if (pickedUpObject)
+                GameEvents.HandReset(pickedUpObject.GetComponent<ItemType>().category);
+            else
+                GameEvents.HandReset(null);
             Destroy(pickedUpObject);
             pickedUpObject = null;
-            GameEvents.HandReset();
         }
 
     }

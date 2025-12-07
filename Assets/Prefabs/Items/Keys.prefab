@@ -242,3 +242,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemType
   type: 2
+  category: 1

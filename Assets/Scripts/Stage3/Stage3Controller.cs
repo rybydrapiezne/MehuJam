@@ -1,8 +1,11 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using NUnit.Framework.Constraints;
+using Stage3;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class Stage3Controller : MonoBehaviour
@@ -14,17 +17,22 @@ public class Stage3Controller : MonoBehaviour
     [SerializeField] HandColliderHandler hand;
     [SerializeField] GameObject handPickupPoint;
     [SerializeField] Animator handAnimator;
+    [SerializeField] Slider slider;
     [SerializeField] List<AudioSource> audioSources;
-
+    [SerializeField] float transitionTime = 0.3f;
+    [SerializeField] int maxErrors=3;
     bool _failed = false;
     bool _isExtending = false;
     bool _isRetracting = false;
     bool _retractTheHand = false;
+    int errors=0;
     ArmExtend armExtend;
 
     void Start()
     {
         armExtend = arm.GetComponent<ArmExtend>();
+        slider.maxValue = maxErrors;
+        slider.value = 0;
     }
     
     void OnEnable()
@@ -60,8 +68,11 @@ public class Stage3Controller : MonoBehaviour
 
     void OnItemCollisionWithBorder()
     {
-        _failed = true;
+        errors++;
+        if(errors >= maxErrors)
+            _failed = true;
         _retractTheHand = true;
+        StartCoroutine(ErrorScreen(transitionTime));
     }
     void OnInteractStart(InputAction.CallbackContext obj)
     {
@@ -88,9 +99,44 @@ public class Stage3Controller : MonoBehaviour
             PointPopUp.Instance.ShowPoints("+" + itemType.coinValue, pickUpItem.transform.position);
         }
     }
-
-    void OnResetHand()
+    IEnumerator ErrorScreen(float time)
     {
+        time /= 2f;
+        float timer = 0f;
+        while (timer < time)
+        {
+            timer += Time.deltaTime;
+            GameManager.ErrorCanvas.alpha = Mathf.Lerp(0f, 1f, timer / time);
+            yield return null;
+        }
+        timer = 0f;
+        while (timer < time)
+        {
+            timer += Time.deltaTime;
+            GameManager.ErrorCanvas.alpha = Mathf.Lerp(1f, 0f, timer / time);
+
+            yield return null;
+        }
+        timer = 0f;
+        while (timer < time)
+        {
+            timer += Time.deltaTime;
+            slider.value = Mathf.Lerp(slider.value, errors, timer);
+            yield return null;
+        }
+        GameManager.ErrorCanvas.alpha = 0f;
+    }
+    void OnResetHand(ItemCategory? itemCategory)
+    {
+        ItemCategory? tempItemType=itemCategory;
+        if(tempItemType!=null)
+            if (itemCategory == ItemCategory.Bad)
+            {
+                StartCoroutine(ErrorScreen(transitionTime));
+                errors++;
+                if(errors >= maxErrors)
+                    _failed = true;
+            }
         if (!_failed)
         {
             _retractTheHand = false;
@@ -103,7 +149,11 @@ public class Stage3Controller : MonoBehaviour
     void OnHandHit()
     {
         _retractTheHand = true;
-        _failed = true;
+        errors++;
+        if(errors >= maxErrors)
+            _failed = true;
+        StartCoroutine(ErrorScreen(transitionTime));
+
     }
     void OnRetractStart(InputAction.CallbackContext context)
     {
