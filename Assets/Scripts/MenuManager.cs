@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.Rendering;
@@ -17,8 +18,11 @@ public class MenuManager : MonoBehaviour
 
     [SerializeField] AudioMixer audioMixer;
 
+    [SerializeField] CanvasGroup fadeCanvas;
+
     private void Start()
     {
+        StartCoroutine(FadeIn(1f));
         if (PlayerPrefs.HasKey(masterName)) SetVolume(PlayerPrefs.GetFloat(masterName), masterName);
         if (PlayerPrefs.HasKey(sfxName)) SetVolume(PlayerPrefs.GetFloat(sfxName), sfxName);
 
@@ -29,7 +33,7 @@ public class MenuManager : MonoBehaviour
     // Main menu
     public void StartGame()
     {
-        SceneManager.LoadScene("MainScene");
+        StartCoroutine(FadeOutChangeScene(1f));
     }
 
     public void Quit()
@@ -51,6 +55,32 @@ public class MenuManager : MonoBehaviour
     }
 
     // General
+    private IEnumerator FadeIn(float time)
+    {
+        float timer = 0f;
+        while (timer < time)
+        {
+            timer += Time.deltaTime;
+            fadeCanvas.alpha = Mathf.Lerp(1f, 0f, timer / time);
+
+            yield return null;
+        }
+        fadeCanvas.alpha = 0f;
+    }
+
+    private IEnumerator FadeOutChangeScene(float time)
+    {
+        float timer = 0f;
+        while (timer < time)
+        {
+            timer += Time.deltaTime;
+            fadeCanvas.alpha = Mathf.Lerp(0f, 1f, timer / time);
+
+            yield return null;
+        }
+        SceneManager.LoadScene("MainScene");
+    }
+
     private void setSlider(string name, Slider slider)
     {
         float currentVolume;
