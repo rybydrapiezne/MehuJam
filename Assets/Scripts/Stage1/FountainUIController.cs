@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
+using System.Collections.Generic;
+using UnityEngine.Rendering;
 
 public class FountainUIController : MonoBehaviour
 {
@@ -10,13 +12,10 @@ public class FountainUIController : MonoBehaviour
     [SerializeField] private Button throwCoins;
     [SerializeField] private TMP_Text valueText;
 
-    [SerializeField] private Button upgradeAButton;
-    [SerializeField] private Button upgradeBButton;
-    [SerializeField] private Button upgradeCButton;
+    [SerializeField] private UpgradeSystem.Upgrade[] upgradeOrder;
+    [SerializeField] private Button[] upgradeButtons;
 
-    public bool upgradeASelected = false;
-    public bool upgradeBSelected = false;
-    public bool upgradeCSelected = false;
+    public UpgradeSystem.Upgrade selectedUpgrade = UpgradeSystem.Upgrade.None;
 
     public int minValue = 0;
     public int maxValue = 10;
@@ -25,6 +24,7 @@ public class FountainUIController : MonoBehaviour
     private void Awake()
     {
         HidePanel();
+        selectedUpgrade = UpgradeSystem.Upgrade.None;
 
         valueSlider.minValue = minValue;
         valueSlider.maxValue = maxValue;
@@ -35,26 +35,23 @@ public class FountainUIController : MonoBehaviour
         valueSlider.onValueChanged.AddListener(OnSliderChanged);
         throwCoins.onClick.AddListener(OnThrowCoinsPressed);
 
-        upgradeAButton.onClick.AddListener(() => SelectUpgrade("A"));
-        upgradeBButton.onClick.AddListener(() => SelectUpgrade("B"));
-        upgradeCButton.onClick.AddListener(() => SelectUpgrade("C"));
-
+        for (int i = 0; i < upgradeButtons.Length; i++)
+        {
+            upgradeButtons[i].onClick.AddListener(() => SelectUpgrade(upgradeOrder[i]));
+        }
 
         UpdateValueText((int)valueSlider.value);
     }
-    private void SelectUpgrade(string upgrade)
+
+    private void SelectUpgrade(UpgradeSystem.Upgrade upgrade)
     {
-        upgradeASelected = upgrade == "A";
-        upgradeBSelected = upgrade == "B";
-        upgradeCSelected = upgrade == "C";
+        selectedUpgrade = upgrade;
 
-        upgradeAButton.interactable = true;
-        upgradeBButton.interactable = true;
-        upgradeCButton.interactable = true;
-
-        if (upgradeASelected) upgradeAButton.interactable = false;
-        if (upgradeBSelected) upgradeBButton.interactable = false;
-        if (upgradeCSelected) upgradeCButton.interactable = false;
+        for (int i = 0; i < upgradeButtons.Length; i++)
+        {
+            upgradeButtons[i].interactable = true;
+            if (upgradeOrder[i] == upgrade) upgradeButtons[i].interactable = false;
+        }
     }
 
     private void OnDestroy()
@@ -97,20 +94,11 @@ public class FountainUIController : MonoBehaviour
 
     private void OnThrowCoinsPressed()
     {
-        if (!upgradeASelected && !upgradeBSelected && !upgradeCSelected)
+        if (selectedUpgrade == UpgradeSystem.Upgrade.None)
         {
             Debug.Log("Select an upgrade first!");
             return;
         }
-
-        Func<UpgradeSystem.Upgrade> decideUpgrade = () =>
-        {
-            if (upgradeASelected) return UpgradeSystem.Upgrade.MovementSpeed;
-            if (upgradeBSelected) return UpgradeSystem.Upgrade.CharacterTilt;
-            return UpgradeSystem.Upgrade.PickpocketTime;
-        };
-
-        UpgradeSystem.Upgrade selectedUpgrade = decideUpgrade();
 
         int coinsToSpend = (int)valueSlider.value;
 
