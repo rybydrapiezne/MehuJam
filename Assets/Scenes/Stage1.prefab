@@ -150,6 +150,7 @@ MonoBehaviour:
   audioSource: {fileID: 7102327149319992610}
   fountainUI: {fileID: 0}
   stage1Controller: {fileID: 0}
+  characterIndex: 0
 --- !u!82 &7102327149319992610
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1285,7 +1286,6 @@ MonoBehaviour:
   minValue: 0
   maxValue: 10
   startValue: 0
-  coinsNeeded: 5
 --- !u!225 &2128863002719310773
 CanvasGroup:
   m_ObjectHideFlags: 0

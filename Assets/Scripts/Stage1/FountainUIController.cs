@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System;
+using UnityEditor.ShaderGraph.Internal;
 
 public class FountainUIController : MonoBehaviour
 {
@@ -47,6 +48,14 @@ public class FountainUIController : MonoBehaviour
         upgradeASelected = upgrade == "A";
         upgradeBSelected = upgrade == "B";
         upgradeCSelected = upgrade == "C";
+
+        upgradeAButton.interactable = true;
+        upgradeBButton.interactable = true;
+        upgradeCButton.interactable = true;
+
+        if (upgradeASelected) upgradeAButton.interactable = false;
+        if (upgradeBSelected) upgradeBButton.interactable = false;
+        if (upgradeCSelected) upgradeCButton.interactable = false;
     }
 
     private void OnDestroy()
