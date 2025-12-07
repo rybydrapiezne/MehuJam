@@ -97,6 +97,7 @@ public class GameManager : MonoBehaviour
     private void ChangeStage()
     {
         currentStage++;
+        //Debug.Log("next stage, " + currentStage);
         if (currentStage == 1)
         {
             if (stage3 != null) Destroy(stage3.gameObject);

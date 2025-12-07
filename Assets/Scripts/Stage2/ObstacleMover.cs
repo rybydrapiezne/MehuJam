@@ -20,6 +20,7 @@ public class ObstacleMover : MonoBehaviour
         Debug.Log("trigger enter");
         if(collision != null)
         {
+           if (!collision.transform.parent || !collision.transform.parent.gameObject.GetComponent<PlayerController>()) return;
            PlayerController controller = collision.transform.parent.gameObject.GetComponent<PlayerController>();
            controller.ApplyPhysicalForce(knockbackForce);
         }
