@@ -28,6 +28,7 @@ public class PlaceCharactersRandom : MonoBehaviour
         if (GameManager.Instance)
         {
             GameManager.characterPrefabs = characterPrefabs;
+            canSeeItems = UpgradeSystem.hasTreasureGlass;
         }
 
         if (charactersToPlace <= 0) charactersToPlace = 1;
@@ -65,7 +66,7 @@ public class PlaceCharactersRandom : MonoBehaviour
         {
             int index = Random.Range(0, unusedItems.Count);
             
-            if (!canSeeItems && i != 0)
+            if (!canSeeItems || i != 0)
             {
                 var item = new Items(questionMark,unusedItems[index].Prefab);
                 characterItems.Add(item);
