@@ -6,32 +6,23 @@ using Random = UnityEngine.Random;
 public class ItemSpawner : MonoBehaviour
 {
     [SerializeField] List<PolygonCollider2D> spawnArea;
-    [SerializeField] List<GameObject> goodItems;
-    [SerializeField] List<GameObject> badItems;
+    //[SerializeField] List<GameObject> goodItems;
+    //[SerializeField] List<GameObject> badItems;
     [SerializeField] int itemsToSpawn;
     List<Collider2D> colliders = new List<Collider2D>();
+    private List<Items> characterItems = new List<Items>();
 
     void Start()
     {
+        characterItems = new List<Items>(GameManager.Items);
         for (int j = 0; j < itemsToSpawn; j++)
         {
-            int i = Random.Range(0, 10);
-            if (i < 5)
-            {
-                int x = Random.Range(0, goodItems.Count);
-                Vector2 spawnPoint = GetSpawnPoint(goodItems[x].GetComponent<ItemType>().type);
+
+                int x = Random.Range(0, characterItems.Count);
+                Vector2 spawnPoint = GetSpawnPoint(characterItems[x].Prefab.GetComponent<ItemType>().type);
                 Quaternion randomRotation = Quaternion.Euler(0, 0, Random.Range(0f, 360f));
-                var item=Instantiate(goodItems[x], spawnPoint, randomRotation);
+                var item=Instantiate(characterItems[x].Prefab, spawnPoint, randomRotation);
                 colliders.Add(item.gameObject.GetComponent<Collider2D>());
-            }
-            else
-            {
-                int x = Random.Range(0, badItems.Count);
-                Vector2 spawnPoint = GetSpawnPoint(badItems[x].GetComponent<ItemType>().type);
-                Quaternion randomRotation = Quaternion.Euler(0, 0, Random.Range(0f, 360f));
-                var item=Instantiate(badItems[x], spawnPoint, randomRotation);
-                colliders.Add(item.gameObject.GetComponent<Collider2D>());
-            }
         }
     }
 

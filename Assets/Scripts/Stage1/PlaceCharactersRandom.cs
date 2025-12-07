@@ -3,6 +3,11 @@ using UnityEngine;
 
 public class PlaceCharactersRandom : MonoBehaviour
 {
+    [SerializeField] List<Items> items;
+    [SerializeField] Sprite questionMark;
+
+    public bool canSeeItems = false;
+    
     public GameObject[] characterPrefabs;
 
     public int charactersToPlace = 3;
@@ -16,7 +21,7 @@ public class PlaceCharactersRandom : MonoBehaviour
     {
         if (characterPrefabs == null || characterPrefabs.Length == 0)
         {
-            Debug.LogError("Brak prefabów postaci w inspectorze!");
+            Debug.LogError("Brak prefabï¿½w postaci w inspectorze!");
             return;
         }
 
@@ -30,8 +35,9 @@ public class PlaceCharactersRandom : MonoBehaviour
         {
             GameObject prefab = characterPrefabs[indices[i]];
             Vector2 pos = positions[i];
-
+            var characterItems = GetItemsForCharacter();
             GameObject instance = Instantiate(prefab, pos, Quaternion.identity, parentContainer);
+            instance.GetComponent<CharacterData>().items = characterItems;
             instance.transform.rotation = Quaternion.identity;
             Vector3 s = instance.transform.localScale;
             instance.transform.localScale = new Vector3(Mathf.Abs(s.x), Mathf.Abs(s.y), Mathf.Abs(s.z));
@@ -45,6 +51,28 @@ public class PlaceCharactersRandom : MonoBehaviour
         }
     }
 
+    List<Items> GetItemsForCharacter()
+    {
+        List<Items> characterItems = new List<Items>();
+        List<Items> unusedItems = new List<Items>(items);
+        for (int i = 0; i < 3; i++)
+        {
+            int index = Random.Range(0, unusedItems.Count);
+            
+            if (!canSeeItems && i != 0)
+            {
+                var item = new Items(questionMark,unusedItems[index].Prefab);
+                characterItems.Add(item);
+            }
+            else
+            {
+                characterItems.Add(unusedItems[index]);
+            }
+            unusedItems.RemoveAt(index);
+            
+        }
+        return characterItems;
+    }
     private List<int> GetUniqueRandomIndices(int poolSize, int take)
     {
         List<int> list = new List<int>(poolSize);

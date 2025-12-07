@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -22,6 +23,8 @@ public class GameManager : MonoBehaviour
     public InputActionReference attackAction;
     public InputActionReference retractAction;
     public InputActionReference interactAction;
+    public List<Items> defaultItems;
+    public static List<Items> Items = new List<Items>();
 
     [Header("General")]
     public GameObject stage1Prefab;
@@ -52,6 +55,7 @@ public class GameManager : MonoBehaviour
     {
         //Debug.Log(UpgradeSystem.TryToUpgrade(UpgradeSystem.Upgrade.TreasureGlass));
         UpgradeSystem.SystemReset();
+            Items.Add(item);
         NextStage();
     }
 

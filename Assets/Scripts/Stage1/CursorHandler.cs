@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -62,6 +63,9 @@ public class CursorHandler : MonoBehaviour
             }
             else if (!isFountain)
             {
+                var characterItems = GetComponent<CharacterData>().items;
+                foreach (Items item in characterItems)
+                    GameManager.Items.Add(item);
                 stage1Controller.End();
             }
 
