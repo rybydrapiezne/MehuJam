@@ -15,6 +15,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    [Header("Stage 1")]
+    public static GameObject[] characterPrefabs;
+    public static int selectedCharacterIndex = -1;
+
     [Header("Stage 2")]
     public InputActionReference tiltAction;
     public InputActionReference jumpAction;

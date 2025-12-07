@@ -62,6 +62,7 @@ public class PlayerController : MonoBehaviour
         if(Mathf.Abs(tilt) >= 1f)
         {
             Debug.Log("oops fell over");
+            manager.isPlaying = false;
         }
 
         characterAnimator.SetTilt(tilt);

@@ -25,6 +25,11 @@ public class PlaceCharactersRandom : MonoBehaviour
             return;
         }
 
+        if (GameManager.Instance)
+        {
+            GameManager.characterPrefabs = characterPrefabs;
+        }
+
         if (charactersToPlace <= 0) charactersToPlace = 1;
         charactersToPlace = Mathf.Min(charactersToPlace, characterPrefabs.Length);
 
@@ -47,6 +52,7 @@ public class PlaceCharactersRandom : MonoBehaviour
             {
                 cursorHandler.fountainUI = FindAnyObjectByType<FountainUIController>()?.gameObject;
                 cursorHandler.stage1Controller = FindAnyObjectByType<Stage1Controller>();
+                cursorHandler.characterIndex = indices[i];
             }
         }
     }

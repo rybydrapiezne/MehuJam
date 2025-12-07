@@ -13,6 +13,8 @@ public class CursorHandler : MonoBehaviour
 
     private bool isOutlineVisible = false;
 
+    [HideInInspector] public int characterIndex;
+
     private void Awake()
     {
         if (fountainUI == null)
@@ -66,6 +68,7 @@ public class CursorHandler : MonoBehaviour
                 var characterItems = GetComponent<CharacterData>().items;
                 foreach (Items item in characterItems)
                     GameManager.Items.Add(item);
+                GameManager.selectedCharacterIndex = characterIndex;
                 stage1Controller.End();
             }
 
