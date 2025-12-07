@@ -39,6 +39,8 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        externalForcesModifier = UpgradeSystem.characterTiltModifier;
+        playerInputModifier += UpgradeSystem.characterTiltModifier - 1f;
     }
 
     private void Update()
@@ -54,12 +56,13 @@ public class PlayerController : MonoBehaviour
 
         randomnessTiltStrength = Mathf.Lerp(randomnessTiltStrength, 0, deltaTime / 4f);
 
-        tilt += (tiltSpeed * (playerInputModifier * playerInputTiltStrength + externalForcesModifier * (Mathf.Sign(randomnessTiltStrength) * tiltSpeedCurve.Evaluate(Mathf.Abs(randomnessTiltStrength)) + physicsTiltStrength + 0.05f))) * deltaTime / 90f;
+        tilt += (tiltSpeed * (playerInputModifier * playerInputTiltStrength + (Mathf.Sign(randomnessTiltStrength) * tiltSpeedCurve.Evaluate(Mathf.Abs(randomnessTiltStrength)) + physicsTiltStrength + 0.05f) / externalForcesModifier )) * deltaTime / 90f;
         tilt = Mathf.Clamp(tilt, -1f, 1f);
 
         if(Mathf.Abs(tilt) >= 1f)
         {
             Debug.Log("oops fell over");
+            manager.isPlaying = false;
         }
 
         characterAnimator.SetTilt(tilt);

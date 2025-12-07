@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class FountainUIController : MonoBehaviour
 {
@@ -20,8 +21,6 @@ public class FountainUIController : MonoBehaviour
     public int minValue = 0;
     public int maxValue = 10;
     public int startValue = 0;
-
-    [SerializeField] private int coinsNeeded = 5;
 
     private void Awake()
     {
@@ -95,7 +94,19 @@ public class FountainUIController : MonoBehaviour
             Debug.Log("Select an upgrade first!");
             return;
         }
+
+        Func<UpgradeSystem.Upgrade> decideUpgrade = () =>
+        {
+            if (upgradeASelected) return UpgradeSystem.Upgrade.MovementSpeed;
+            if (upgradeBSelected) return UpgradeSystem.Upgrade.CharacterTilt;
+            return UpgradeSystem.Upgrade.PickpocketTime;
+        };
+
+        UpgradeSystem.Upgrade selectedUpgrade = decideUpgrade();
+
         int coinsToSpend = (int)valueSlider.value;
+
+        int coinsNeeded = UpgradeSystem.upgradePrices[selectedUpgrade];
 
         if (coinsToSpend < coinsNeeded)
         {
@@ -103,9 +114,16 @@ public class FountainUIController : MonoBehaviour
             return;
         }
 
-        if (WalletPlaceHolder.Instance.TrySpendCoins(coinsToSpend))
+        if (Wallet.TrySpendCoins(coinsToSpend))
         {
             Debug.Log("coins in fountain");
+            if (UpgradeSystem.TryToUpgrade(selectedUpgrade))
+            {
+                Debug.Log("Upgrade succeed");
+            } else
+            {
+                Debug.Log("Upgrade failed");
+            }
         }
         else
         {

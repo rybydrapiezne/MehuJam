@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -7,11 +8,14 @@ public class CursorHandler : MonoBehaviour
     [SerializeField] private GameObject outline;
     [SerializeField] private Collider2D targetCollider;
     [SerializeField] private bool isFountain = false;
+    [SerializeField] AudioSource audioSource;
 
     public GameObject fountainUI;
     public Stage1Controller stage1Controller;
 
     private bool isOutlineVisible = false;
+
+    [HideInInspector] public int characterIndex;
 
     private void Awake()
     {
@@ -58,6 +62,8 @@ public class CursorHandler : MonoBehaviour
         if (isCursorOnTarget != isOutlineVisible)
         {
             outline.SetActive(isCursorOnTarget);
+            if(isCursorOnTarget)
+                audioSource.Play();
             isOutlineVisible = isCursorOnTarget;
         }
 
@@ -69,6 +75,10 @@ public class CursorHandler : MonoBehaviour
             }
             else if (!isFountain)
             {
+                var characterItems = GetComponent<CharacterData>().items;
+                foreach (Items item in characterItems)
+                    GameManager.Items.Add(item);
+                GameManager.selectedCharacterIndex = characterIndex;
                 stage1Controller.End();
             }
 

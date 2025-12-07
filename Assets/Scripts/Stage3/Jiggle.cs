@@ -15,6 +15,7 @@ public class Jiggle : MonoBehaviour
     void Start()
     {
         StartCoroutine(JiggleRoutine());
+        jiggleRate = UpgradeSystem.pickpocketJiggleRate;
     }
 
     void Update()

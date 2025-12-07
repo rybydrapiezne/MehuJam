@@ -1,7 +1,9 @@
 using System;
+using System.Collections.Generic;
 using NUnit.Framework.Constraints;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Random = UnityEngine.Random;
 
 public class Stage3Controller : MonoBehaviour
 {
@@ -12,6 +14,7 @@ public class Stage3Controller : MonoBehaviour
     [SerializeField] HandColliderHandler hand;
     [SerializeField] GameObject handPickupPoint;
     [SerializeField] Animator handAnimator;
+    [SerializeField] List<AudioSource> audioSources;
 
     bool _failed = false;
     bool _isExtending = false;
@@ -71,6 +74,7 @@ public class Stage3Controller : MonoBehaviour
             pickUpItem.transform.position=handPickupPoint.transform.position;
             pickUpItem.transform.parent = hand.transform;
             armExtend.pickedUpObject=pickUpItem;
+            audioSources[Random.Range(0,audioSources.Count)].Play();
             handAnimator.SetBool("PickUp",true);
             _retractTheHand = true;
         }

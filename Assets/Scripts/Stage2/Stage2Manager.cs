@@ -50,9 +50,17 @@ public class Stage2Manager : MonoBehaviour
         playerController.manager = this;
         targetStartPos = target.transform.position;
 
-        target.transform.position = targetStartPos;
-        playerController.Init();
-        levelTime = LEVELTIME;
+        if(GameManager.selectedCharacterIndex != -1){
+            GameObject targetInstance = Instantiate(GameManager.characterPrefabs[GameManager.selectedCharacterIndex], targetStartPos, Quaternion.identity);
+            targetInstance.transform.parent = target.transform;
+            Destroy( targetInstance.GetComponent<CursorHandler>() );
+        } else
+        {
+            target.transform.GetChild(0).gameObject.SetActive(true);
+        }
+
+            playerController.Init();
+        levelTime = LEVELTIME / UpgradeSystem.movementSpeedModifier;
 
         StartCoroutine(EnterScene());
 

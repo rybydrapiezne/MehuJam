@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3626916397498700004}
   - component: {fileID: 1623583730264300034}
   - component: {fileID: 6450898597907756888}
+  - component: {fileID: 7102327149319992610}
   m_Layer: 0
   m_Name: Fountain
   m_TagString: Untagged
@@ -146,8 +147,106 @@ MonoBehaviour:
   outline: {fileID: 7314601842676869351}
   targetCollider: {fileID: 1623583730264300034}
   isFountain: 1
+  audioSource: {fileID: 7102327149319992610}
   fountainUI: {fileID: 0}
   stage1Controller: {fileID: 0}
+--- !u!82 &7102327149319992610
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: -2253911629886400664}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 5979886647347353147, guid: 6501825ac1716818f981bfb4fa1a5e93, type: 2}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: 94f7bbb54c31702b8996b6d02d57ddf6, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1.1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &529300586682326583
 GameObject:
   m_ObjectHideFlags: 0
@@ -259,52 +358,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &1117618820525090497
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3746987996904054281}
-  - component: {fileID: 1055180913903024136}
-  m_Layer: 0
-  m_Name: WalletPlaceHolder
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3746987996904054281
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1117618820525090497}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.9527, y: -0.68362, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 360899706334888221}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1055180913903024136
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1117618820525090497}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d902237895bb01140baf00b0b37641a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WalletPlaceHolder
-  startCoins: 8
-  maxCoins: 10
 --- !u!1 &1131659070944914233
 GameObject:
   m_ObjectHideFlags: 0
@@ -1052,7 +1105,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: +
+  m_text: stability
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1079,8 +1132,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42.9
-  m_fontSizeBase: 42.9
+  m_fontSize: 23.59
+  m_fontSizeBase: 23.59
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 0
@@ -1241,7 +1294,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3948624086818307104}
   m_Enabled: 1
-  m_Alpha: 0
+  m_Alpha: 1
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
@@ -1385,7 +1438,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: +
+  m_text: 'lockpick
+
+    time
+
+    extension'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1412,8 +1469,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42.9
-  m_fontSizeBase: 42.9
+  m_fontSize: 19.7
+  m_fontSizeBase: 19.7
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 0
@@ -1643,7 +1700,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '-'
+  m_text: speed
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1670,8 +1727,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 42.9
-  m_fontSizeBase: 42.9
+  m_fontSize: 27.3
+  m_fontSizeBase: 27.3
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 0
@@ -2009,7 +2066,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3746987996904054281}
   - {fileID: 7878350319992209165}
   - {fileID: 8202918010667555154}
   - {fileID: 840990504799379553}
@@ -2415,6 +2471,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd4e19b5ebe496e4ea9f3ea815c2ac40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlaceCharactersRandom
+  items:
+  - sprite: {fileID: -7258506057010965533, guid: 6a10d76bd19bd70ec92395918b966a4f, type: 3}
+    prefab: {fileID: 5819580404328497063, guid: 391e5afd01db3d6a79bf98786d5b8dac, type: 3}
+  - sprite: {fileID: -7258506057010965533, guid: a3cfb858067eb0bf7aebc76bee386c8a, type: 3}
+    prefab: {fileID: 4106059214078088192, guid: 67553f96d78ea7d218c2b68e0ae12335, type: 3}
+  - sprite: {fileID: -7258506057010965533, guid: 30c2af5a1c831d5a9ad93637485c35e2, type: 3}
+    prefab: {fileID: 8636471331264619835, guid: 1bf9d4ac495e7fc6ab2b388b11dd13e7, type: 3}
+  - sprite: {fileID: -7258506057010965533, guid: c5f22ac0ddd6c6d689d73c01492b5ba2, type: 3}
+    prefab: {fileID: 1462037366721349423, guid: 9537fdc69a4762080a12f73d6ffe4e81, type: 3}
+  - sprite: {fileID: -7258506057010965533, guid: 5dc8ec2b84239e979b527c52b9a46dec, type: 3}
+    prefab: {fileID: 2176179936999221045, guid: c5accc69d0d3694239bedc6e5c17ca03, type: 3}
+  questionMark: {fileID: -7258506057010965533, guid: 7d48efe3012eca19da84f6ae411c1287, type: 3}
+  canSeeItems: 0
   characterPrefabs:
   - {fileID: 8908136669057397293, guid: 247ede80150588f43bd651554ad45b92, type: 3}
   - {fileID: 3047878065259703502, guid: dc58db6c13e8ca648ae1f5f10842616f, type: 3}
@@ -2423,8 +2492,8 @@ MonoBehaviour:
   - {fileID: 3595341636338099427, guid: ac96395a988da624d96343eabf7ade79, type: 3}
   charactersToPlace: 3
   parentContainer: {fileID: 8202918010667555154}
-  minX: 160
-  maxX: -160
-  minY: 20
-  maxY: 45
-  minDistance: 25
+  minX: 150
+  maxX: -150
+  minY: -20
+  maxY: 30
+  minDistance: 40
