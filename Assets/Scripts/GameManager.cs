@@ -43,6 +43,7 @@ public class GameManager : MonoBehaviour
 
     [Header("UI")]
     [SerializeField] private CanvasGroup fadeCanvas;
+    [SerializeField] private TutorialHandler tutorialHandler;
 
     private void Awake()
     {
@@ -66,7 +67,23 @@ public class GameManager : MonoBehaviour
 
     public void NextStage()
     {
-        StartCoroutine(FadeTransition(1f, ChangeStage));
+        StartCoroutine(FadeTransition(1f, ShowTutorialForCurrentStage));
+    }
+    private void ShowTutorialForCurrentStage()
+    {
+        int stageToShow = currentStage + 1;
+        ChangeStage();
+        StartCoroutine(ShowTutorialAfterFade(stageToShow));
+    }
+    private IEnumerator ShowTutorialAfterFade(int stageNumber)
+    {
+        while (fadeCanvas != null && fadeCanvas.alpha > 0.01f)
+        {
+            yield return null;
+        }
+            
+
+        tutorialHandler.ShowTutorial(stageNumber, null);
     }
 
     private IEnumerator FadeTransition(float time, Action delg)
