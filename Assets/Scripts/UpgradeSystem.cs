@@ -5,19 +5,11 @@ using static UpgradeSystem.Upgrade;
 
 public static class UpgradeSystem
 {
-    public static int money = 0;
-
-    private static float movementSpeedModifier = 1f;
-    private static float characterTiltModifier = 1f;
-    private static float pickpocketTimeExtension = 0f;
-    private static float pickpocketJiggleRate = 1f;
-    private static bool hasTreasureGlass = false;
-
-    public static float MovementSpeedModifier { get { return movementSpeedModifier; } }
-    public static float CharacterTiltModifier { get { return characterTiltModifier; } }
-    public static float PickpocketTimeExtension { get { return pickpocketTimeExtension; } }
-    public static float PickpocketJiggleRate { get { return pickpocketJiggleRate; } }
-    public static bool HasTreasureGlass { get { return hasTreasureGlass; } }
+    public static float movementSpeedModifier { get; private set; } = 1f;
+    public static float characterTiltModifier { get; private set; } = 1f;
+    public static float pickpocketTimeExtension { get; private set; } = 0f;
+    public static float pickpocketJiggleRate { get; private set; } = 1f;
+    public static bool hasTreasureGlass { get; private set; } = false;
 
     public enum Upgrade
     {
@@ -37,6 +29,16 @@ public static class UpgradeSystem
         [PickpocketTime] = 4,
         [PickpocketJiggle] = 2,
         [TreasureGlass] = 1
+    };
+
+    public static Dictionary<Upgrade, int> upgradePrices { get; private set; } = new Dictionary<Upgrade, int>
+    {
+        [None] = 0,
+        [MovementSpeed] = 3,
+        [CharacterTilt] = 5,
+        [PickpocketTime] = 4,
+        [PickpocketJiggle] = 5,
+        [TreasureGlass] = 8
     };
 
     private static Dictionary<Upgrade, int> upgrades = new Dictionary<Upgrade, int>

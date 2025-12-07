@@ -52,7 +52,7 @@ public class Stage2Manager : MonoBehaviour
 
         target.transform.position = targetStartPos;
         playerController.Init();
-        levelTime = LEVELTIME / UpgradeSystem.MovementSpeedModifier;
+        levelTime = LEVELTIME / UpgradeSystem.movementSpeedModifier;
 
         StartCoroutine(EnterScene());
 
