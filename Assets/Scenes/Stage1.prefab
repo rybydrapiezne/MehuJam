@@ -2415,6 +2415,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd4e19b5ebe496e4ea9f3ea815c2ac40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlaceCharactersRandom
+  items:
+  - sprite: {fileID: -7258506057010965533, guid: 6a10d76bd19bd70ec92395918b966a4f, type: 3}
+    prefab: {fileID: 5819580404328497063, guid: 391e5afd01db3d6a79bf98786d5b8dac, type: 3}
+  - sprite: {fileID: -7258506057010965533, guid: a3cfb858067eb0bf7aebc76bee386c8a, type: 3}
+    prefab: {fileID: 4106059214078088192, guid: 67553f96d78ea7d218c2b68e0ae12335, type: 3}
+  - sprite: {fileID: -7258506057010965533, guid: 30c2af5a1c831d5a9ad93637485c35e2, type: 3}
+    prefab: {fileID: 8636471331264619835, guid: 1bf9d4ac495e7fc6ab2b388b11dd13e7, type: 3}
+  - sprite: {fileID: -7258506057010965533, guid: c5f22ac0ddd6c6d689d73c01492b5ba2, type: 3}
+    prefab: {fileID: 1462037366721349423, guid: 9537fdc69a4762080a12f73d6ffe4e81, type: 3}
+  - sprite: {fileID: -7258506057010965533, guid: 5dc8ec2b84239e979b527c52b9a46dec, type: 3}
+    prefab: {fileID: 2176179936999221045, guid: c5accc69d0d3694239bedc6e5c17ca03, type: 3}
+  questionMark: {fileID: -7258506057010965533, guid: 7d48efe3012eca19da84f6ae411c1287, type: 3}
+  canSeeItems: 0
   characterPrefabs:
   - {fileID: 8908136669057397293, guid: 247ede80150588f43bd651554ad45b92, type: 3}
   - {fileID: 3047878065259703502, guid: dc58db6c13e8ca648ae1f5f10842616f, type: 3}
@@ -2423,8 +2436,8 @@ MonoBehaviour:
   - {fileID: 3595341636338099427, guid: ac96395a988da624d96343eabf7ade79, type: 3}
   charactersToPlace: 3
   parentContainer: {fileID: 8202918010667555154}
-  minX: 160
-  maxX: -160
-  minY: 20
-  maxY: 45
-  minDistance: 25
+  minX: 150
+  maxX: -150
+  minY: -20
+  maxY: 30
+  minDistance: 40
