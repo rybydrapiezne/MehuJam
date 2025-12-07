@@ -44,6 +44,7 @@ public class PlaceCharactersRandom : MonoBehaviour
             var characterItems = GetItemsForCharacter();
             GameObject instance = Instantiate(prefab, pos, Quaternion.identity, parentContainer);
             instance.GetComponent<CharacterData>().items = characterItems;
+            instance.GetComponent<CharacterData>().canvas.SetActive(true);
             instance.transform.rotation = Quaternion.identity;
             Vector3 s = instance.transform.localScale;
             instance.transform.localScale = new Vector3(Mathf.Abs(s.x), Mathf.Abs(s.y), Mathf.Abs(s.z));

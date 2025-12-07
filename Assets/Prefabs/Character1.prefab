@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7743983200183678825
 RectTransform:
   m_ObjectHideFlags: 0
@@ -134,9 +134,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 291213170755738776}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 56.80092, y: -10.87985}
   m_SizeDelta: {x: 18, y: 16}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4892866015759962749
@@ -209,9 +209,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 291213170755738776}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 33.08055, y: -10.87985}
   m_SizeDelta: {x: 16, y: 12}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4010492941745315368
@@ -284,9 +284,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 291213170755738776}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 10.860184, y: -10.87985}
   m_SizeDelta: {x: 15, y: 17.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8248099765529071119
@@ -607,6 +607,7 @@ MonoBehaviour:
   audioSource: {fileID: 4807041752354471981}
   fountainUI: {fileID: 0}
   stage1Controller: {fileID: 0}
+  characterIndex: 0
 --- !u!114 &7546307870123779167
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -620,6 +621,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CharacterData
   items: []
+  canvas: {fileID: 985870871188365992}
   images:
   - {fileID: 1693595595778668657}
   - {fileID: 969173427382350965}

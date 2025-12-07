@@ -171,6 +171,8 @@ MonoBehaviour:
   defaultItems:
   - sprite: {fileID: -7258506057010965533, guid: 0f65d89982c18cfdd9d74306cc82d516, type: 3}
     prefab: {fileID: 6483590812720288584, guid: 920970a15a117d87887ce685237110dd, type: 3}
+  - sprite: {fileID: -7258506057010965533, guid: 0f65d89982c18cfdd9d74306cc82d516, type: 3}
+    prefab: {fileID: 6879549485306895440, guid: b32386c7dcd18cf61abe14e2e5a9ef24, type: 3}
   stage1Prefab: {fileID: 7855889579868931536, guid: 5f88ebcf3aaf62447adc09f1777f909f, type: 3}
   stage2Prefab: {fileID: 3700124270632078144, guid: 5ffe57a11139ab648bdc96e700396b50, type: 3}
   stage3Prefab: {fileID: 6993762369450679359, guid: ef52a534f228c7149b3f5a4f9480a3f5, type: 3}
@@ -285,8 +287,8 @@ Camera:
   m_GameObject: {fileID: 757382925}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0.13725491, g: 0.12941177, b: 0.20784314, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0

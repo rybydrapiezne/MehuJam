@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class CharacterData : MonoBehaviour
 {
     public List<Items> items;
+    public GameObject canvas;
+
     [SerializeField]
     List<Image> images;
     void Start()

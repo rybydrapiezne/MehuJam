@@ -3,6 +3,7 @@ namespace Stage3
     public enum ItemCategory
     {
         Good,
-        Bad
+        Bad,
+        Neutral
     }
 }
