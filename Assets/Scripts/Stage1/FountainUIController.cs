@@ -21,6 +21,8 @@ public class FountainUIController : MonoBehaviour
     public int maxValue = 10;
     public int startValue = 0;
 
+    [SerializeField] TMP_Text log;
+
     private void Awake()
     {
         HidePanel();
@@ -37,20 +39,22 @@ public class FountainUIController : MonoBehaviour
 
         for (int i = 0; i < upgradeButtons.Length; i++)
         {
-            upgradeButtons[i].onClick.AddListener(() => SelectUpgrade(upgradeOrder[i]));
+            int index = i;
+            upgradeButtons[i].onClick.AddListener(() => SelectUpgrade(index));
         }
 
         UpdateValueText((int)valueSlider.value);
     }
 
-    private void SelectUpgrade(UpgradeSystem.Upgrade upgrade)
+    private void SelectUpgrade(int upgrade)
     {
-        selectedUpgrade = upgrade;
+        Debug.Log(upgrade);
+        selectedUpgrade = upgradeOrder[upgrade];
 
         for (int i = 0; i < upgradeButtons.Length; i++)
         {
             upgradeButtons[i].interactable = true;
-            if (upgradeOrder[i] == upgrade) upgradeButtons[i].interactable = false;
+            if (upgradeOrder[i] == selectedUpgrade) upgradeButtons[i].interactable = false;
         }
     }
 
@@ -97,6 +101,7 @@ public class FountainUIController : MonoBehaviour
         if (selectedUpgrade == UpgradeSystem.Upgrade.None)
         {
             Debug.Log("Select an upgrade first!");
+            log.text = "Select an upgrade first!";
             return;
         }
 
@@ -107,23 +112,28 @@ public class FountainUIController : MonoBehaviour
         if (coinsToSpend < coinsNeeded)
         {
             Debug.Log("upgrade costs " + coinsNeeded + " coins");
+            log.text = "This upgrade costs " + coinsNeeded + " coins";
             return;
         }
 
         if (Wallet.TrySpendCoins(coinsToSpend))
         {
             Debug.Log("coins in fountain");
+            log.text = "Coins threw to fountain";
             if (UpgradeSystem.TryToUpgrade(selectedUpgrade))
             {
                 Debug.Log("Upgrade succeed");
+                log.text += " and upgraded";
             } else
             {
                 Debug.Log("Upgrade failed");
+                log.text += " and failed";
             }
         }
         else
         {
             Debug.Log("not enough coins");
+            log.text = "Not enough coins";
         }
     }
 
