@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     [Header("Character tilt")]
     public float tilt = 0f;
-
+    
     [SerializeField] private AnimationCurve tiltTimeCurve; // time for tilting to one direction
     [SerializeField] private AnimationCurve tiltSpeedCurve; // speed for tilting
     private float tiltDirection = 1f;
@@ -32,7 +32,8 @@ public class PlayerController : MonoBehaviour
     public float tiltInput = 0f;
 
     private IEnumerator tiltingCoroutine;
-
+    [SerializeField]
+    SoundAnimationController soundController;
     [HideInInspector]
     public Stage2Manager manager;
 
@@ -61,6 +62,7 @@ public class PlayerController : MonoBehaviour
 
         if(Mathf.Abs(tilt) >= 1f)
         {
+            GetComponent<AudioController>().PlayFellOver();
             Debug.Log("oops fell over");
             manager.isPlaying = false;
         }
@@ -91,6 +93,14 @@ public class PlayerController : MonoBehaviour
     {
         if (manager.isPlaying)
         {
+            if (force < 0f)
+            {
+                GetComponent<AudioController>().PlayHeadHurtClip();
+            }
+            else
+            {
+                GetComponent<AudioController>().PlayHitLegClip();
+            }
             physicsTiltStrength += force;
         }
     }
@@ -109,6 +119,8 @@ public class PlayerController : MonoBehaviour
             }
             rb.AddForceY(jumpForce);
             isGrounded = false;
+            GetComponent<AudioController>().PlaySound();
+            soundController.duringJump = true;
         }
     }
 
@@ -130,6 +142,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
+            soundController.duringJump = false;
             isGrounded = true;
         }
     }

@@ -73,6 +73,7 @@ public class Stage3Controller : MonoBehaviour
             pickUpItem.transform.parent = hand.transform;
             armExtend.pickedUpObject=pickUpItem;
             audioSources[Random.Range(0,audioSources.Count)].Play();
+            pickUpItem.GetComponent<AudioSource>().Play();
             handAnimator.SetBool("PickUp",true);
             _retractTheHand = true;
         }
