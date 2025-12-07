@@ -754,9 +754,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e93279a7874d6f946821f09637be59e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TutorialHandler
-  tutorialStage1Prefab: {fileID: 6201021608546834051, guid: 7d398b9a3bc90da49a6ab12efb2b13e1, type: 3}
-  tutorialStage2Prefab: {fileID: 8676431035544572677, guid: 1008d7c780f403746a6c24395fa6fbfa, type: 3}
-  tutorialStage3Prefab: {fileID: 4527350896188642805, guid: e333c6f191677b044ac49ce597ca825b, type: 3}
+  tutorialStage1Prefab: {fileID: 4503941821571764170, guid: f867ee42058b4f84f95a6be9d3084b60, type: 3}
+  tutorialStage2Prefab: {fileID: 4503941821571764170, guid: c51069360bb02e543ae25345478c9c77, type: 3}
+  tutorialStage3Prefab: {fileID: 4503941821571764170, guid: cfaea34b14a82a542b63639226fe5c88, type: 3}
   parentCanvas: {fileID: 2040812569}
 --- !u!1 &3330806432351942866
 GameObject:
@@ -784,7 +784,7 @@ Transform:
   m_GameObject: {fileID: 3330806432351942866}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 18.23566, y: 0.63909, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
