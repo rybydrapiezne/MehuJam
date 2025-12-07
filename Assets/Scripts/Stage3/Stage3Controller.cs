@@ -18,6 +18,8 @@ public class Stage3Controller : MonoBehaviour
     [SerializeField] GameObject handPickupPoint;
     [SerializeField] Animator handAnimator;
     [SerializeField] Slider slider;
+    [SerializeField] GameObject exitButton;
+    [SerializeField] GameObject gameOverUI;
     [SerializeField] List<AudioSource> audioSources;
     [SerializeField] float transitionTime = 0.3f;
     [SerializeField] int maxErrors=3;
@@ -25,6 +27,7 @@ public class Stage3Controller : MonoBehaviour
     bool _isExtending = false;
     bool _isRetracting = false;
     bool _retractTheHand = false;
+    bool _collectedValuableItem = false;
     int errors=0;
     ArmExtend armExtend;
 
@@ -33,6 +36,7 @@ public class Stage3Controller : MonoBehaviour
         armExtend = arm.GetComponent<ArmExtend>();
         slider.maxValue = maxErrors;
         slider.value = 0;
+        exitButton.SetActive(false);
     }
     
     void OnEnable()
@@ -98,8 +102,23 @@ public class Stage3Controller : MonoBehaviour
         {
             Wallet.AddCoins(itemType.coinValue);
             PointPopUp.Instance.ShowPoints("+" + itemType.coinValue, pickUpItem.transform.position);
+
+            _collectedValuableItem = true;
+            exitButton.SetActive(true);
         }
     }
+    public void TryExitStage()
+    {
+        if (_collectedValuableItem)
+        {
+            GameManager.Instance.NextStage();
+        }
+        else
+        {
+            Debug.Log("Valuable item not picked up");
+        }
+    }
+
     IEnumerator ErrorScreen(float time)
     {
         time /= 2f;
@@ -152,10 +171,25 @@ public class Stage3Controller : MonoBehaviour
         _retractTheHand = true;
         errors++;
         if(errors >= maxErrors)
+        {
             _failed = true;
+            ShowGameOverUI();
+        }
         StartCoroutine(ErrorScreen(transitionTime));
 
     }
+    public void ShowGameOverUI()
+    {
+        gameOverUI.SetActive(true);
+        //Time.timeScale = 0f;
+    }
+    public void OnTryAgainButton()
+    {
+        //Time.timeScale = 1f;
+        string currentSceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+        UnityEngine.SceneManagement.SceneManager.LoadScene(currentSceneName);
+    }
+
     void OnRetractStart(InputAction.CallbackContext context)
     {
         if(!_isExtending && !_failed)
