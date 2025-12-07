@@ -3,8 +3,8 @@ using UnityEngine;
 public static class Wallet
 {
 
-    public static int coins { get; private set; } = 8;
-    [SerializeField] private static int startCoins = 8;
+    public static int coins { get; private set; } = 0;
+    [SerializeField] private static int startCoins = 0;
     [SerializeField] private static int maxCoins = 10; //
 
     public static void Reset()
