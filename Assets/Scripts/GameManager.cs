@@ -55,6 +55,7 @@ public class GameManager : MonoBehaviour
     {
         //Debug.Log(UpgradeSystem.TryToUpgrade(UpgradeSystem.Upgrade.TreasureGlass));
         UpgradeSystem.SystemReset();
+        foreach (Items item in defaultItems)
             Items.Add(item);
         NextStage();
     }
