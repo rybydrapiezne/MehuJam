@@ -173,7 +173,7 @@ MonoBehaviour:
     prefab: {fileID: 6483590812720288584, guid: 920970a15a117d87887ce685237110dd, type: 3}
   stage1Prefab: {fileID: 7855889579868931536, guid: 5f88ebcf3aaf62447adc09f1777f909f, type: 3}
   stage2Prefab: {fileID: 3700124270632078144, guid: 5ffe57a11139ab648bdc96e700396b50, type: 3}
-  stage3Prefab: {fileID: 8214547721699352461, guid: e26c9bec10b25dc4ea953ff57967b6a5, type: 3}
+  stage3Prefab: {fileID: 6993762369450679359, guid: ef52a534f228c7149b3f5a4f9480a3f5, type: 3}
   fadeCanvas: {fileID: 2144362456}
   errorCanvasGroup: {fileID: 1986402783}
   tutorialHandler: {fileID: 99265095382940560}

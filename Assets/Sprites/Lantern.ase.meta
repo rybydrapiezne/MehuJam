@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7f474fd363ee5da47a562429d1640614
+guid: c2b7be5a5afd03d4da1dbe184aefe910
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -137,8 +137,8 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 11
-      height: 13
+      width: 13
+      height: 15
     spriteID: 78a718a749caaf840b63d0b0b16ff086
     spriteBone: []
     spriteOutline: []
@@ -169,8 +169,8 @@ ScriptedImporter:
       cellRect:
         x: 0
         y: 0
-        width: 11
-        height: 13
+        width: 13
+        height: 15
       spriteId: 78a718a749caaf840b63d0b0b16ff086
     linkedCells: []
     tileCells: []
@@ -229,5 +229,5 @@ ScriptedImporter:
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 11, y: 13}
+  canvasSize: {x: 13, y: 15}
   previousTextureSize: {x: 32, y: 32}

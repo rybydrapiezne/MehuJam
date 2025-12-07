@@ -129,7 +129,7 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: Design Document
     originalName: 
-    pivot: {x: 1.24581, y: -1.548718}
+    pivot: {x: 0.8745099, y: -1.548718}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -137,7 +137,7 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 179
+      width: 255
       height: 195
     spriteID: d765fa3e8fb44064490b2f500e5de6b9
     spriteBone: []

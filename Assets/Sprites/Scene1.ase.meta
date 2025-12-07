@@ -162,7 +162,7 @@ ScriptedImporter:
       y: 4
       width: 16
       height: 16
-    spriteID: 78fb7468263fedb469d8d6c33cce55ef
+    spriteID: 2d200e21f1a4a3b4183e96067defb157
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -183,7 +183,7 @@ ScriptedImporter:
       y: 28
       width: 16
       height: 16
-    spriteID: a705e61a90ca6df4cbd92a0aced2dabf
+    spriteID: 048abaf7f1ddad642adb136da6a832d0
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -204,7 +204,7 @@ ScriptedImporter:
       y: 4
       width: 16
       height: 16
-    spriteID: 5383c8bd473c9ad45aba6dbd7c785aff
+    spriteID: cfd3302686c62b74fa8bef7a9c2b3e5c
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -250,19 +250,19 @@ ScriptedImporter:
         x: 16
         y: 16
       name: Tileset_0_1
-      spriteId: 78fb7468263fedb469d8d6c33cce55ef
+      spriteId: 2d200e21f1a4a3b4183e96067defb157
     - tileId: 2
       size:
         x: 16
         y: 16
       name: Tileset_0_2
-      spriteId: a705e61a90ca6df4cbd92a0aced2dabf
+      spriteId: 048abaf7f1ddad642adb136da6a832d0
     - tileId: 3
       size:
         x: 16
         y: 16
       name: Tileset_0_3
-      spriteId: 5383c8bd473c9ad45aba6dbd7c785aff
+      spriteId: cfd3302686c62b74fa8bef7a9c2b3e5c
     guid: -1102077067
   platformSettings:
   - name: DefaultTexturePlatform
