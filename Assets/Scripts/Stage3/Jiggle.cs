@@ -5,7 +5,7 @@ using Random = System.Random;
 
 public class Jiggle : MonoBehaviour
 {
-    [SerializeField] float jiggleRate = 1;
+    [SerializeField] float jiggleRate = 35;
     [SerializeField] GameObject leftEdgePoint;
     [SerializeField] GameObject rightEdgePoint;
     [SerializeField] float maxDistanceToEdge;
@@ -15,7 +15,7 @@ public class Jiggle : MonoBehaviour
     void Start()
     {
         StartCoroutine(JiggleRoutine());
-        jiggleRate = UpgradeSystem.pickpocketJiggleRate;
+        jiggleRate *= UpgradeSystem.pickpocketJiggleRate;
     }
 
     void Update()

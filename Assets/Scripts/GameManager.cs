@@ -43,6 +43,8 @@ public class GameManager : MonoBehaviour
 
     [Header("UI")]
     [SerializeField] private CanvasGroup fadeCanvas;
+    [SerializeField] private CanvasGroup errorCanvasGroup;
+    public static CanvasGroup ErrorCanvas;
     [SerializeField] private TutorialHandler tutorialHandler;
 
     private void Awake()
@@ -62,6 +64,7 @@ public class GameManager : MonoBehaviour
         UpgradeSystem.SystemReset();
         foreach (Items item in defaultItems)
             Items.Add(item);
+        ErrorCanvas = errorCanvasGroup;
         NextStage();
     }
 
@@ -85,6 +88,7 @@ public class GameManager : MonoBehaviour
 
         tutorialHandler.ShowTutorial(stageNumber, null);
     }
+
 
     private IEnumerator FadeTransition(float time, Action delg)
     {
