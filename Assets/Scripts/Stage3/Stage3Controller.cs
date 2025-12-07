@@ -73,10 +73,9 @@ public class Stage3Controller : MonoBehaviour
     void OnItemCollisionWithBorder()
     {
         errors++;
-        if(errors >= maxErrors)
-            _failed = true;
         _retractTheHand = true;
         StartCoroutine(ErrorScreen(transitionTime));
+        CheckGameOver();
     }
     void OnInteractStart(InputAction.CallbackContext obj)
     {
@@ -119,6 +118,16 @@ public class Stage3Controller : MonoBehaviour
         }
     }
 
+    private void CheckGameOver()
+    {
+        Debug.Log($"CheckGameOver: errors={errors}/{maxErrors} _failed={_failed}");
+        if (errors >= maxErrors && !_failed)
+        {
+            _failed = true;
+            ShowGameOverUI();
+        }
+    }
+
     IEnumerator ErrorScreen(float time)
     {
         time /= 2f;
@@ -154,8 +163,7 @@ public class Stage3Controller : MonoBehaviour
             {
                 StartCoroutine(ErrorScreen(transitionTime));
                 errors++;
-                if(errors >= maxErrors)
-                    _failed = true;
+                CheckGameOver();
             }
         if (!_failed)
         {
@@ -180,12 +188,26 @@ public class Stage3Controller : MonoBehaviour
     }
     public void ShowGameOverUI()
     {
+        if (gameOverUI == null)
+        {
+            Debug.LogWarning("ShowGameOverUI: gameOverUI is not assigned!");
+            return;
+        }
+
+        if (GameManager.ErrorCanvas != null)
+            GameManager.ErrorCanvas.alpha = 0f;
+
         gameOverUI.SetActive(true);
-        //Time.timeScale = 0f;
+        gameOverUI.transform.SetAsLastSibling();
+
+        Time.timeScale = 0f;
+
+        Debug.Log("ShowGameOverUI called");
     }
+
     public void OnTryAgainButton()
     {
-        //Time.timeScale = 1f;
+        Time.timeScale = 1f;
         string currentSceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
         UnityEngine.SceneManagement.SceneManager.LoadScene(currentSceneName);
     }
