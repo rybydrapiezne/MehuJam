@@ -66,12 +66,12 @@ public class GameManager : MonoBehaviour
         foreach (Items item in defaultItems)
             Items.Add(item);
         ErrorCanvas = errorCanvasGroup;
-        NextStage();
+        NextStage(true);
     }
 
-    public void NextStage()
+    public void NextStage(bool isFadeIn = false)
     {
-        StartCoroutine(FadeTransition(1f, ShowTutorialForCurrentStage));
+        StartCoroutine(FadeTransition(1f, ShowTutorialForCurrentStage, isFadeIn));
     }
     private void ShowTutorialForCurrentStage()
     {
