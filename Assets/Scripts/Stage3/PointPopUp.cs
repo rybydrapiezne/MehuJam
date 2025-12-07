@@ -1,22 +1,22 @@
-using UnityEngine;
 using TMPro;
+using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PointPopUp : MonoBehaviour
 {
     // to bedzie trzeba dodac do metody po tym jak bedze ustalona wartosc do danego przedmiotu
+    public static PointPopUp Instance;
     [SerializeField] private GameObject pointPopUpPrefab;
-
-    public void GrabItem(int coinWorth)
+    private void Awake()
     {
-        ShowPoints(coinWorth.ToString());
+        Instance = this;    
     }
-
-    private void ShowPoints(string text)
+    public void ShowPoints(string text, Vector3 position)
     {
-        if(pointPopUpPrefab)
-        {
-            GameObject prefab = Instantiate(pointPopUpPrefab, transform.position, Quaternion.identity);
-            prefab.GetComponentInChildren<TextMeshPro>().text = text;
-        }
+        if (!pointPopUpPrefab) return;
+
+        Vector3 spawnPos = position + new Vector3(0, 0.5f, 0);
+        GameObject popup = Instantiate(pointPopUpPrefab, spawnPos, Quaternion.identity);
+        popup.GetComponentInChildren<TextMeshPro>().text = text;
     }
 }

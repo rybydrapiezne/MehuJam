@@ -75,8 +75,18 @@ public class Stage3Controller : MonoBehaviour
             audioSources[Random.Range(0,audioSources.Count)].Play();
             handAnimator.SetBool("PickUp",true);
             _retractTheHand = true;
+
+            TryAddCoins(pickUpItem);
         }
             
+    }
+    void TryAddCoins(GameObject pickUpItem)
+    {
+        if (pickUpItem.TryGetComponent<ItemType>(out var itemType) && itemType.coinValue > 0)
+        {
+            Wallet.AddCoins(itemType.coinValue);
+            PointPopUp.Instance.ShowPoints("+" + itemType.coinValue, pickUpItem.transform.position);
+        }
     }
 
     void OnResetHand()
