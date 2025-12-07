@@ -12,12 +12,11 @@ public class ObstacleMover : MonoBehaviour
         time += Time.deltaTime;
         if (time > ttl) Destroy(gameObject);
 
-        transform.Translate(new Vector3(-speed, 0, 0) * Time.deltaTime);
+        transform.Translate(Vector3.left * speed * Time.deltaTime, Space.World);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("trigger enter");
         if(collision != null)
         {
            if (!collision.transform.parent || !collision.transform.parent.gameObject.GetComponent<PlayerController>()) return;

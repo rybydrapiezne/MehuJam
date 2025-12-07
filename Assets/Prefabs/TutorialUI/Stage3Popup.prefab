@@ -9,12 +9,24 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 5213630380849084954, guid: 7d398b9a3bc90da49a6ab12efb2b13e1, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 166.308
+      objectReference: {fileID: 0}
+    - target: {fileID: 5213630380849084954, guid: 7d398b9a3bc90da49a6ab12efb2b13e1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5213630380849084954, guid: 7d398b9a3bc90da49a6ab12efb2b13e1, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5213630380849084954, guid: 7d398b9a3bc90da49a6ab12efb2b13e1, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -140
+      objectReference: {fileID: 0}
+    - target: {fileID: 5213630380849084954, guid: 7d398b9a3bc90da49a6ab12efb2b13e1, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 305.5
       objectReference: {fileID: 0}
     - target: {fileID: 6163794439007405489, guid: 7d398b9a3bc90da49a6ab12efb2b13e1, type: 3}
       propertyPath: m_Pivot.x
@@ -103,7 +115,16 @@ PrefabInstance:
     - target: {fileID: 7671105921148565119, guid: 7d398b9a3bc90da49a6ab12efb2b13e1, type: 3}
       propertyPath: m_text
       value: "Move the hand with Left and Right mouse button \nPress E to grab an
-        item\nDon't hit pocket edges to avoid noticing the pedestrian"
+        item\nDon't hit pocket edges and don't steal noisy items\nto avoid noticing
+        the pedestrian"
+      objectReference: {fileID: 0}
+    - target: {fileID: 7671105921148565119, guid: 7d398b9a3bc90da49a6ab12efb2b13e1, type: 3}
+      propertyPath: m_fontSize
+      value: 16.82
+      objectReference: {fileID: 0}
+    - target: {fileID: 7671105921148565119, guid: 7d398b9a3bc90da49a6ab12efb2b13e1, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 16.82
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

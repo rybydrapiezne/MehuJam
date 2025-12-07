@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private CanvasGroup fadeCanvas;
     [SerializeField] private CanvasGroup errorCanvasGroup;
     public static CanvasGroup ErrorCanvas;
-    [SerializeField] private TutorialHandler tutorialHandler;
+    public TutorialHandler tutorialHandler;
 
     private void Awake()
     {
@@ -73,6 +73,17 @@ public class GameManager : MonoBehaviour
     {
         StartCoroutine(FadeTransition(1f, ShowTutorialForCurrentStage, isFadeIn));
     }
+
+    public void BackToStage1()
+    {
+        StartCoroutine(FadeTransition(1f, () =>
+        {
+            currentStage = 1;
+            if (stage2 != null) Destroy(stage2.gameObject);
+            stage1 = Instantiate(stage1Prefab).GetComponent<Stage1Controller>();
+        }));
+    }
+
     private void ShowTutorialForCurrentStage()
     {
         int stageToShow = currentStage + 1;
@@ -81,13 +92,13 @@ public class GameManager : MonoBehaviour
     }
     private IEnumerator ShowTutorialAfterFade(int stageNumber)
     {
-        while (fadeCanvas != null && fadeCanvas.alpha > 0.01f)
+        while (fadeCanvas != null && fadeCanvas.alpha > 0.3f)
         {
             yield return null;
         }
             
-
-        tutorialHandler.ShowTutorial(stageNumber, null);
+        if(stageNumber != 2)
+            tutorialHandler.ShowTutorial(stageNumber, null);
     }
 
 

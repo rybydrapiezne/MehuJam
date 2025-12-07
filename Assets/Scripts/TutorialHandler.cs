@@ -9,9 +9,9 @@ public class TutorialHandler : MonoBehaviour
     public GameObject tutorialStage2Prefab;
     public GameObject tutorialStage3Prefab;
 
-    private bool shownStage1 = false;
-    private bool shownStage2 = false;
-    private bool shownStage3 = false;
+    private static bool shownStage1 = false;
+    private static bool shownStage2 = false;
+    private static bool shownStage3 = false;
 
     [SerializeField] private Canvas parentCanvas;
 

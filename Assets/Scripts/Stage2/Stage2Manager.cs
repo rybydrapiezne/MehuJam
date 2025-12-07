@@ -2,7 +2,6 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
-using static UnityEngine.GraphicsBuffer;
 
 public class Stage2Manager : MonoBehaviour
 {
@@ -39,6 +38,8 @@ public class Stage2Manager : MonoBehaviour
 
     private Coroutine endingCoroutine;
 
+    public ParticleSystem particles;
+
     private void Start()
     {
         if(tiltAction == null || jumpAction == null)
@@ -59,7 +60,7 @@ public class Stage2Manager : MonoBehaviour
             target.transform.GetChild(0).gameObject.SetActive(true);
         }
 
-            playerController.Init();
+        playerController.Init();
         levelTime = LEVELTIME / UpgradeSystem.movementSpeedModifier;
 
         StartCoroutine(EnterScene());
@@ -135,11 +136,13 @@ public class Stage2Manager : MonoBehaviour
         {
             timer += Time.deltaTime;
             playerController.transform.position = Vector3.Lerp(playerEndPos + new Vector3(-100, 0, 0), playerEndPos, translateCurve.Evaluate(timer / time1));
+            playerController.tilt = 0f;
 
             yield return null;
         }
 
         playerController.transform.position = playerEndPos;
+        GameManager.Instance.tutorialHandler.ShowTutorial(2, null);
 
         yield return null;
     }
@@ -152,6 +155,7 @@ public class Stage2Manager : MonoBehaviour
         float timer = 0f;
         bool isChangingScene = false;
         Vector3 playerStartPos = playerController.transform.position;
+        playerStartPos.y = -39*1.7f;
         while (time2 > timer)
         {
             timer += Time.deltaTime;
@@ -160,10 +164,10 @@ public class Stage2Manager : MonoBehaviour
                 target.transform.position = Vector3.Lerp(targetStartPos, targetEndPos.position, translateCurve.Evaluate(timer / time1));
 
                 playerController.tilt = Mathf.Lerp(playerController.tilt, -.1f, timer / time1);
-                playerController.characterAnimator.SetTilt(playerController.tilt);
+                playerController.playerAnimator.SetTilt(playerController.tilt);
             }
 
-            playerController.transform.position = Vector3.Lerp(playerStartPos, target.transform.position + new Vector3(-30, 11.5f, 0), translateCurve.Evaluate(timer / time2));
+            playerController.transform.position = Vector3.Lerp(playerStartPos, target.transform.position + new Vector3(-50, 11.5f, 0), translateCurve.Evaluate(timer / time2));
 
             if (timer > time3 && !isChangingScene)
             {

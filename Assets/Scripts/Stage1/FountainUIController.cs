@@ -12,6 +12,8 @@ public class FountainUIController : MonoBehaviour
     [SerializeField] private Button throwCoins;
     [SerializeField] private TMP_Text valueText;
 
+    [SerializeField] private TMP_Text coinsText;
+
     [SerializeField] private UpgradeSystem.Upgrade[] upgradeOrder;
     [SerializeField] private Button[] upgradeButtons;
 
@@ -27,6 +29,8 @@ public class FountainUIController : MonoBehaviour
     {
         HidePanel();
         selectedUpgrade = UpgradeSystem.Upgrade.None;
+
+        UpdateCoinsLabel();
 
         valueSlider.minValue = minValue;
         valueSlider.maxValue = maxValue;
@@ -44,6 +48,11 @@ public class FountainUIController : MonoBehaviour
         }
 
         UpdateValueText((int)valueSlider.value);
+    }
+
+    public void UpdateCoinsLabel()
+    {
+        coinsText.text = "Coins " + Wallet.coins;
     }
 
     private void SelectUpgrade(int upgrade)
@@ -134,6 +143,7 @@ public class FountainUIController : MonoBehaviour
             Debug.Log("not enough coins");
             log.text = "Not enough coins";
         }
+        UpdateCoinsLabel();
     }
 
 

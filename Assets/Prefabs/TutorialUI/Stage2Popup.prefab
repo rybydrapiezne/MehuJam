@@ -26,11 +26,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5213630380849084954, guid: 7d398b9a3bc90da49a6ab12efb2b13e1, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -237
+      value: -518
       objectReference: {fileID: 0}
     - target: {fileID: 5213630380849084954, guid: 7d398b9a3bc90da49a6ab12efb2b13e1, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -127
+      value: -231
       objectReference: {fileID: 0}
     - target: {fileID: 6163794439007405489, guid: 7d398b9a3bc90da49a6ab12efb2b13e1, type: 3}
       propertyPath: m_Pivot.x
@@ -120,7 +120,7 @@ PrefabInstance:
       propertyPath: m_text
       value: 'Press Q, E to balance yourself
 
-        Avoid obstacles
+        Space to jump, avoid obstacles
 
         Don''t
         fall over'

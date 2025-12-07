@@ -11,7 +11,6 @@ public class MoveBackground : MonoBehaviour
 
     void Update()
     {
-
             // Moves left in world space (towards negative X) - this is what you usually want
             background.transform.Translate(Vector3.left * speedBackground * Time.deltaTime, Space.World);
             walkway.transform.Translate(Vector3.left * speedWalkway * Time.deltaTime, Space.World);

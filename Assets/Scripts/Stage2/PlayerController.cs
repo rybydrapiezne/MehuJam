@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded = true;
 
     private Rigidbody2D rb;
-    public PlayerAnimator characterAnimator;
+    public PlayerAnimator playerAnimator;
 
     public float tiltInput = 0f;
 
@@ -40,6 +40,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        playerAnimator.playerController = this;
         externalForcesModifier = UpgradeSystem.characterTiltModifier;
         playerInputModifier += UpgradeSystem.characterTiltModifier - 1f;
     }
@@ -53,7 +54,7 @@ public class PlayerController : MonoBehaviour
     private void GameLoop(float deltaTime)
     {
         playerInputTiltStrength = Mathf.Lerp(playerInputTiltStrength, -tiltInput, deltaTime * 4f);
-        physicsTiltStrength = Mathf.Lerp(physicsTiltStrength, tilt, deltaTime * 4f);
+        physicsTiltStrength = Mathf.Lerp(physicsTiltStrength, tilt, deltaTime * 2f);
 
         randomnessTiltStrength = Mathf.Lerp(randomnessTiltStrength, 0, deltaTime / 4f);
 
@@ -64,10 +65,11 @@ public class PlayerController : MonoBehaviour
         {
             GetComponent<AudioController>().PlayFellOver();
             Debug.Log("oops fell over");
+            playerAnimator.FallOver(tilt);
             manager.isPlaying = false;
         }
 
-        characterAnimator.SetTilt(tilt);
+        playerAnimator.SetTilt(tilt);
     }
 
     public void Init()
