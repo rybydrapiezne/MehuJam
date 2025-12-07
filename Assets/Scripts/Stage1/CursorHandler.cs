@@ -7,6 +7,7 @@ public class CursorHandler : MonoBehaviour
     [SerializeField] private GameObject outline;
     [SerializeField] private Collider2D targetCollider;
     [SerializeField] private bool isFountain = false;
+    [SerializeField] AudioSource audioSource;
 
     public GameObject fountainUI;
     public Stage1Controller stage1Controller;
@@ -52,6 +53,8 @@ public class CursorHandler : MonoBehaviour
         if (isCursorOnTarget != isOutlineVisible)
         {
             outline.SetActive(isCursorOnTarget);
+            if(isCursorOnTarget)
+                audioSource.Play();
             isOutlineVisible = isCursorOnTarget;
         }
 

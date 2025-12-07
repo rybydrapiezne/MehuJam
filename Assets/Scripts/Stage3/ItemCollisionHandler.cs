@@ -40,13 +40,13 @@ public class ItemCollisionHandler : MonoBehaviour
             rb.AddForce(directionToCenter * pushForce, ForceMode2D.Impulse);
         }
 
-        yield return new WaitForSeconds(0.15f);
+        yield return new WaitForSeconds(0.2f);
         rb.linearVelocity = Vector2.zero;
     }
     
     IEnumerator WaitForSpawn()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.5f);
         canTriggerCollisions = true;
     }
 }
