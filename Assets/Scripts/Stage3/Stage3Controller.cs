@@ -68,13 +68,6 @@ public class Stage3Controller : MonoBehaviour
         GameObject pickUpItem = hand.CanPickUp();
         if (pickUpItem != null && !_failed)
         {
-            ItemType itemType = pickUpItem.GetComponent<ItemType>();
-            if (itemType != null && itemType.coinValue > 0)
-            {
-                Wallet.AddCoins(itemType.coinValue);
-                Debug.Log("+ " + itemType.coinValue + " coinow. razem: " + Wallet.coins);
-            }
-
             pickUpItem.GetComponent<Rigidbody2D>().simulated = false;
             pickUpItem.transform.position=handPickupPoint.transform.position;
             pickUpItem.transform.parent = hand.transform;
@@ -82,8 +75,18 @@ public class Stage3Controller : MonoBehaviour
             audioSources[Random.Range(0,audioSources.Count)].Play();
             handAnimator.SetBool("PickUp",true);
             _retractTheHand = true;
+
+            TryAddCoins(pickUpItem);
         }
             
+    }
+    void TryAddCoins(GameObject pickUpItem)
+    {
+        if (pickUpItem.TryGetComponent<ItemType>(out var itemType) && itemType.coinValue > 0)
+        {
+            Wallet.AddCoins(itemType.coinValue);
+            PointPopUp.Instance.ShowPoints("+" + itemType.coinValue, pickUpItem.transform.position);
+        }
     }
 
     void OnResetHand()
