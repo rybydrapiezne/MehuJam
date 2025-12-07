@@ -90,14 +90,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6201021608546834051, guid: 7d398b9a3bc90da49a6ab12efb2b13e1, type: 3}
       propertyPath: m_Name
-      value: TutorialPopupPanel Variant
+      value: Stage1Popup
       objectReference: {fileID: 0}
     - target: {fileID: 7671105921148565119, guid: 7d398b9a3bc90da49a6ab12efb2b13e1, type: 3}
       propertyPath: m_text
       value: 'Choose a person to pickpocket.
 
         Collected coins can be thrown
-        into the fountain.'
+        into the fountain
+
+        for upgrades.'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

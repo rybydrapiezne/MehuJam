@@ -66,12 +66,12 @@ public class GameManager : MonoBehaviour
         foreach (Items item in defaultItems)
             Items.Add(item);
         ErrorCanvas = errorCanvasGroup;
-        NextStage();
+        NextStage(true);
     }
 
-    public void NextStage()
+    public void NextStage(bool isFadeIn = false)
     {
-        StartCoroutine(FadeTransition(1f, ShowTutorialForCurrentStage));
+        StartCoroutine(FadeTransition(1f, ShowTutorialForCurrentStage, isFadeIn));
     }
     private void ShowTutorialForCurrentStage()
     {
@@ -91,16 +91,23 @@ public class GameManager : MonoBehaviour
     }
 
 
-    private IEnumerator FadeTransition(float time, Action delg)
+    private IEnumerator FadeTransition(float time, Action delg, bool isFadeIn=false)
     {
-        time = time / 2f;
         float timer = 0f;
-        while (timer < time)
+        if (!isFadeIn)
         {
-            timer += Time.deltaTime;
-            fadeCanvas.alpha = Mathf.Lerp(0f, 1f, timer / time);
+            time = time / 2f;
+            timer = 0f;
+            while (timer < time)
+            {
+                timer += Time.deltaTime;
+                fadeCanvas.alpha = Mathf.Lerp(0f, 1f, timer / time);
 
-            yield return null;
+                yield return null;
+            }
+        } else
+        {
+            fadeCanvas.alpha = 1f;
         }
 
         delg();
