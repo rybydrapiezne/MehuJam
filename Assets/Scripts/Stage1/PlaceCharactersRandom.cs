@@ -4,6 +4,9 @@ using UnityEngine;
 public class PlaceCharactersRandom : MonoBehaviour
 {
     [SerializeField] List<Items> items;
+    [SerializeField] Sprite questionMark;
+
+    public bool canSeeItems = false;
     
     public GameObject[] characterPrefabs;
 
@@ -51,9 +54,22 @@ public class PlaceCharactersRandom : MonoBehaviour
     List<Items> GetItemsForCharacter()
     {
         List<Items> characterItems = new List<Items>();
+        List<Items> unusedItems = new List<Items>(items);
         for (int i = 0; i < 3; i++)
         {
-            characterItems.Add(items[Random.Range(0, items.Count)]);
+            int index = Random.Range(0, unusedItems.Count);
+            
+            if (!canSeeItems && i != 0)
+            {
+                var item = new Items(questionMark,unusedItems[index].Prefab);
+                characterItems.Add(item);
+            }
+            else
+            {
+                characterItems.Add(unusedItems[index]);
+            }
+            unusedItems.RemoveAt(index);
+            
         }
         return characterItems;
     }
