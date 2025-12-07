@@ -186,6 +186,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemType
   type: 3
+  category: 1
 --- !u!50 &3710069313277067094
 Rigidbody2D:
   serializedVersion: 5

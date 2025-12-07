@@ -245,6 +245,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemType
   type: 2
+  category: 1
 --- !u!82 &1404562691921961997
 AudioSource:
   m_ObjectHideFlags: 0

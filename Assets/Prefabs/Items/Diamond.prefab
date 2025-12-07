@@ -212,6 +212,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemType
   type: 0
+  coinValue: 3
 --- !u!82 &9093451888924754775
 AudioSource:
   m_ObjectHideFlags: 0
