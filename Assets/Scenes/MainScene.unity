@@ -172,6 +172,7 @@ MonoBehaviour:
   stage2Prefab: {fileID: 3700124270632078144, guid: 5ffe57a11139ab648bdc96e700396b50, type: 3}
   stage3Prefab: {fileID: 4913131038778598323, guid: 1a439aaeab687e9b0b7e4fca0549c21f, type: 3}
   fadeCanvas: {fileID: 2144362456}
+  tutorialHandler: {fileID: 99265095382940560}
 --- !u!114 &533245150
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -535,7 +536,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -648,6 +649,54 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2144362454}
   m_CullTransparentMesh: 1
+--- !u!114 &99265095382940560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3330806432351942866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e93279a7874d6f946821f09637be59e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TutorialHandler
+  tutorialStage1Prefab: {fileID: 6201021608546834051, guid: 7d398b9a3bc90da49a6ab12efb2b13e1, type: 3}
+  tutorialStage2Prefab: {fileID: 8676431035544572677, guid: 1008d7c780f403746a6c24395fa6fbfa, type: 3}
+  tutorialStage3Prefab: {fileID: 4527350896188642805, guid: e333c6f191677b044ac49ce597ca825b, type: 3}
+  parentCanvas: {fileID: 2040812569}
+--- !u!1 &3330806432351942866
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6717323783203950321}
+  - component: {fileID: 99265095382940560}
+  m_Layer: 0
+  m_Name: TutorialHandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6717323783203950321
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3330806432351942866}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 18.23566, y: 0.63909, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -655,4 +704,5 @@ SceneRoots:
   - {fileID: 757382929}
   - {fileID: 863546750}
   - {fileID: 131553256}
+  - {fileID: 6717323783203950321}
   - {fileID: 2040812570}

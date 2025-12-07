@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class CursorHandler : MonoBehaviour
@@ -28,6 +29,12 @@ public class CursorHandler : MonoBehaviour
     private void Update()
     {
         if (outline == null || targetCollider == null) return;
+
+        if (Mathf.Approximately(Time.timeScale, 0f))
+        {
+            outline.SetActive(false);
+            return;
+        }
 
         bool isFountainPanelVisible = false;
 
